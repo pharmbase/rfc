@@ -18,7 +18,7 @@
 	  // Метаданные
 	"Meta": {
 		  // Версия формата
-		"Version": number,
+		"Version": number(int),
 		  // Отправитель (public key)
 		"Sender": string,
 		  // Агент передачи данных [*]

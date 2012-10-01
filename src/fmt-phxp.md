@@ -29,12 +29,7 @@
 				// Источник данных (BR_NICK)
 				"Source": string,
 				// FIXME Массив типов данных в содержании
-				"ItemType": [
-					number, 
-					number, 
-					number
-					... 
-				],
+				"ItemType": [number, number, number	... ],
 				// Временной диапазон отбора данных
 				"TimeRange": {
 					// Нижняя граница [dd.mm.yyyy hh:mm:ss]

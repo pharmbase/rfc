@@ -6,7 +6,7 @@
 * Формат [JSON](http://json.org/json-ru.html)
 * Кодировка [UTF-8](http://ru.wikipedia.org/wiki/UTF-8)
 * `//` - это комментарий только для пояснения и он должен отсутствовать в реальных данных
-* `[*]` - эту пару ключ-значение можно опустить 
+* `[*]` - эту пару ключ-значение можно пропустить 
 * `string` - строка “в двойных кавычках”
 * `string(date)` - строка в формате даты “dd.mm.yyyy hh:mm:ss”
 * `number(int)` - число целое
@@ -60,4 +60,8 @@
 			}]
 	}]
 }
+```
+
+```
+{"Meta":{"Version":1,"Sender":"f96b5d3726906aeb99fb6b2bc37f91a519cbc767","Agent":"My cool app"},"Data":[{"Head":{"Source":"BR_NICK","ItemType":[1,"TimeRange":{Lower:"25.09.2012 00:00:00",Upper:"25.09.2012 23:59:59"}},"Item": [{"Code": "10420","Name": "Авамис аэр.27,5мкг/доза бал. 30д Глаксо Велком","QuantIn": 1,"PriceIn": 32.5,"QuantOut": 0,"PriceOut": 0,"QuantEnd": 0},{"Code":"4048","Name":"АД Минус табл. 0,55г. №40 Эвалар","QuantIn":1,"PriceIn":31.24,"QuantOut":0,"PriceOut":0,"QuantEnd":0},{"Code":"83","Name":"Аскорб.к-та 10% 2мл. №10 Здоровье АО,Харьков","QuantIn":5,"PriceIn":9.99,"QuantOut":0,"PriceOut":0,"QuantEnd":0}]}]}
 ```

@@ -7,7 +7,7 @@
 
 * Формат [JSON](http://json.org/json-ru.html)
 * Кодировка [UTF-8](http://ru.wikipedia.org/wiki/UTF-8)
-* `//` - это комментарий только для пояснения и он должен отсутствовать в реальных данных
+* `/* */` - это комментарий только для пояснения и он должен отсутствовать в реальных данных
 * `[*]` - эту пару ключ-значение можно пропустить 
 * `string` - строка “в двойных кавычках”
 * `number(int)` - число целое
@@ -15,49 +15,49 @@
 
 ```json
 {
-	// Метаданные
+	/* Метаданные */
 	"Meta": {
-		// Версия формата number(int)
+		/* Версия формата number(int) */
 		"Version": 1,
-		// Отправитель (public key) string
+		/* Отправитель (public key) string */
 		"Sender": "f96b5d3726906aeb99fb6b2bc37f91a519cbc767",
-		// Агент передачи данных (программа) [*] string
+		/* Агент передачи данных (программа) [*] string */
 		"Agent": "My Cool Application",
-		// salein saleout string
-		"LegacyProject": "salein",
-		//  monthly weekly dayly string
-		"LegacyFrequency": "monthly",
-		// Нижняя граница веменного диапазона отбора данных string[dd.mm.yyyy hh:mm:ss]
+		/*  string[sale-in|sale-out] */
+		"LegacyProject": "sale-in",
+		/*  string[monthly|weekly|dayly] */
+		"LegacyFrequency": "dayly",
+		/* Нижняя граница веменного диапазона отбора данных string[dd.mm.yyyy hh:mm:ss] */
 		"TimeRangeLower": "08.10.2012 00:00:00",
-		// Верхняя граница веменного диапазона отбора данных string[dd.mm.yyyy hh:mm:ss]
+		/* Верхняя граница веменного диапазона отбора данных string[dd.mm.yyyy hh:mm:ss] */
 		"TimeRangeUpper": "08.10.2012 23:59:59"		
 	},
-	// Данные (массив заголовок/содержание)
+	/* Данные (массив заголовок/содержание) */
 	"Data": [{
-		// Заголовок
+		/* Заголовок */
 		"Head": {
-			// Источник данных (BR_NICK)
+			/* Источник данных (BR_NICK) */
 			"Source": "21-00-0540-А",
 		},
-		// Содержание (массив записей содержания)
+		/* Содержание (массив записей содержания) */
 		"Item": [{
-			// Код препарата клиента string[40]
+			/* Код препарата клиента string[40] */
 			"C": "10420",
-			// Полное наименование препарата + производитель (через пробел) string[255]
+			/* Полное наименование препарата + производитель (через пробел) string[255] */
 			"N": "Авамис аэр.27,5мкг/доза бал. 30д Глаксо Велком",
-			// Поставщик [1024 символов]
-			"S": string,
-			// ЕГРПОУ (ОКПО) [12 символов]
-			"E": string,
-			// Приход количество InputQuantity number(float)
+			/* Поставщик [*]-только для string[1024] */
+			"S": "Рога и Копыта Корпорейшн",
+			/* ЕГРПОУ (ранее ОКПО) [*]-только для string[12] */
+			"E": "82389009",
+			/* Приход количество InputQuantity number(float) */
 			"IQ": 20,
-			// Приход цена (за единицу товара) InputPrice number(float)
+			/* Приход цена (за единицу товара) InputPrice number(float) */
 			"IP": 32.50,
-			// Расход количество OutputQuantity number(float)
+			/* Расход количество OutputQuantity number(float) */
 			"OQ": 3,
-			// Расход цена (за единицу товара) OutputPrice number(float)
+			/* Расход цена (за единицу товара) OutputPrice number(float) */
 			"OP": 39.72,
-			// Остаток на конец периода BalanceQuantity number(float)
+			/* Остаток на конец периода BalanceQuantity number(float) */
 			"BQ": 8
 		}]
 	}]

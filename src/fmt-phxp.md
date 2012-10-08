@@ -1,5 +1,4 @@
-Формат приемо-передачи данных для PharmXplorer (Draft)
-=======================================================
+# Формат приемо-передачи данных для PharmXplorer (Draft) #
 
 *документ постоянно обновляется*
 
@@ -24,11 +23,9 @@
 		/* Агент передачи данных (программа) [*], string */
 		"Agent": "My Cool Application",
 		/* Проект, для которого формируются данные, string[sale-in|sale-out] */
-		"LegacyProject": "sale-out",
-		/* Дискретность формирования данных, string[monthly|weekly|dayly] */
-		"LegacyDiscrete": "dayly",
-		/* Природа данных, string[analytical|synthetic] */
-		"LegacyAccounting": "analytical",
+		"Project": "sale-out/dayly",
+		/* Учетность данных, string[analytical|synthetic] */
+		"Accounting": "analytical",
 		/* Нижняя граница временного диапазона отбора данных, string[dd.mm.yyyy hh:mm:ss] */
 		"TimeRangeLower": "08.10.2012 00:00:00",
 		/* Верхняя граница временного диапазона отбора данных, string[dd.mm.yyyy hh:mm:ss] */

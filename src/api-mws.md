@@ -61,7 +61,7 @@ GET http[s]://{address}/info
 	"AppZen": "Programming, Motherfucker",
 	"TypeOS": "linux/amd64",
 	"MadeIn": "go1.0.3",
-	"TimeOn":"2012-10-10 15:56:04.940722 +0300 EEST"
+	"TimeOn": "2012-10-10 15:56:04.940722 +0300 EEST"
 }
 ```
 

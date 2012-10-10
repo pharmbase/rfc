@@ -39,26 +39,26 @@
 API реализуется двумя методами HTTP: `GET` - для получения данных из сервиса в теле ответа на запрос и `POST` - для передачи данных в сервис в теле запроса.
 
 ```
+Временный протокол:
+https = http
+Временный адрес в сети:
 {addr} = 10.0.1.116
+Аутентификация по умолчанию:
 {auth} = key=sysdba&sum=f96b5d3726906aeb99fb6b2bc37f91a519cbc767
 ```
 
 ### `/ping` ###
-
 ```
 GET https://{addr}/ping HTTP/1.1
 ```
-
 ```
 PONG
 ```
 
 ### `/info` ###
-
 ```
 GET https://{addr}/info HTTP/1.1
 ```
-
 ```
 {
 	"AppStr": "MWS",
@@ -71,10 +71,9 @@ GET https://{addr}/info HTTP/1.1
 ```
 
 ### `/auth/set` ###
-
 ```
-POST https://{addr}/auth/set?{auth}  HTTP/1.1
-Content-Type: application/json
+POST https://{addr}/auth/set?{auth} HTTP/1.1
+Content-Type: application/json; charset=utf-8
 
 [
 	{
@@ -82,17 +81,16 @@ Content-Type: application/json
 		"PKey": "ad0f7b32c41f311160db30fd2dc5f9f913f0aa41",
 		/* Secret key, string */
 		"SKey": "f01fd7eb1485290c10b1ac95db9710670f89bda6",
-		/* Morion key, string */
-		"MKey": "234567"
+		/* Origin key, string */
+		"OKey": "234567"
 	}
 ]
 ```
 
 ### `/auth/del` ###
-
 ```
-POST https://{addr}/auth/del?{auth}  HTTP/1.1
-Content-Type: application/json
+POST https://{addr}/auth/del?{auth} HTTP/1.1
+Content-Type: application/json; charset=utf-8
 
 [
 	{
@@ -100,6 +98,61 @@ Content-Type: application/json
 		"PKey": "ad0f7b32c41f311160db30fd2dc5f9f913f0aa41"
 	}
 ]
+```
+
+### `/link/set` ###
+```
+POST https://{addr}/link/set?{auth} HTTP/1.1
+Content-Type: application/json; charset=utf-8
+
+[
+	{
+		"HSum": "9e32295f8225803bb6d5fdfcc0674616a4413c1b",
+		"Name": "В чащах юга жил бы цитрус? Да, но фальшивый экземпляр!",
+		"IDLink": "5577006791947779410",
+		"IDDrug": "9194777",
+		"IDBrnd": "0",
+		"IDCatg": "0",
+		"FIXME": "FIXME"
+	}
+]
+```
+
+### `/link/del` ###
+```
+POST https://{addr}/link/del?{auth} HTTP/1.1
+Content-Type: application/json; charset=utf-8
+
+[
+	{
+	 	/* Хеш-сумма SHA1 от наименования  */
+	 	"HSum": "9e32295f8225803bb6d5fdfcc0674616a4413c1b"
+	}
+]
+```
+
+### `/link/get` ###
+```
+GET https://{addr}/link/get?{auth} HTTP/1.1
+```
+```
+FIXME
+```
+
+### `/data/add` ###
+```
+POST https://{addr}/data/add?{auth}&mpr= HTTP/1.1
+Content-Type: application/json; charset=utf-8
+
+FIXME
+```
+
+### `/data/get` ###
+```
+GET https://{addr}/data/get?{auth}&mpr= HTTP/1.1
+```
+```
+FIXME
 ```
 
 <!--
@@ -135,23 +188,6 @@ GET http[s]://{domain/service/version}/info/get?<auth>
 #### `/auth/del` `202`
 Удаляет аутентификацию по публичному ключу `key` (string).
 
-#### `/link/add` `202`
-
-Отправляет хеш строки `key` (string, sha1) и ее значение `val` (string) в вебсервис для экспертного связывания, тип проекта указывается в параметре запроса `way`.
-
-
-```
-POST http[s]://{domain/service/version}/link/add/?way=01 HTTP/1.1
-Content-Type: application/json
-
-[
-	{
-		"Key": "9e32295f8225803bb6d5fdfcc0674616a4413c1b",
-		"Val": "В чащах юга жил бы цитрус? Да, но фальшивый экземпляр!"
-	}
-]
-```
-
 #### `/link/set` `202`
 
 Устанавливает для контрольной суммы `key` (string, sha1) ссылку на новое значение эталонного ключа `val` (string).
@@ -160,28 +196,13 @@ Content-Type: application/json
 POST http[s]://{domain/service/version}/link/set?<auth> HTTP/1.1
 Content-Type: application/json
 
-[
-	{
-		"Key": "9e32295f8225803bb6d5fdfcc0674616a4413c1b",
-		"Val": "5577006791947779410"
-	}
-]
+
 ```
 
 #### `/link/del` `202`
 	
 Удаляет ссылку для контрольной суммы `key` (string, sha1).
 
-```
-POST http[s]://{domain/service/version}/link/del?<auth> HTTP/1.1
-Content-Type: application/json
-
-[
-	{
-	 	"Key": "9e32295f8225803bb6d5fdfcc0674616a4413c1b"
-	}
-]
-```
 #### `/data/add` `202`
 
 Принимает данные из различных источников. Формат и логика их последующей обработки зависит от параметра `way`, который задается разработчиками сервиса для каждого отдельного случая.

@@ -45,9 +45,27 @@ https = http
 {addr} = 10.0.1.116
 Аутентификация по умолчанию:
 {auth} = key=sysdba&sum=f96b5d3726906aeb99fb6b2bc37f91a519cbc767
+Тип проекта:
+{project} = mpr=project_name
+
+/* admin */
+/ping "GET"
+
+/* public */
+/info "GET"
+
+/* authenticated */
+/auth/set "POST" key sum
+/auth/del "POST" key sum
+/link/set "POST" key sum
+/link/del "POST" key sum
+/link/get "GET"  key sum mpr
+/data/add "POST" key sum mpr
+/data/get "GET"  key sum mpr
 ```
 
 ### `/ping` ###
+Проверка доступности.
 ```
 GET https://{addr}/ping HTTP/1.1
 ```
@@ -56,6 +74,7 @@ PONG
 ```
 
 ### `/info` ###
+Получение информации.
 ```
 GET https://{addr}/info HTTP/1.1
 ```
@@ -71,6 +90,7 @@ GET https://{addr}/info HTTP/1.1
 ```
 
 ### `/auth/set` ###
+Установка параметров аутентификации.
 ```
 POST https://{addr}/auth/set?{auth} HTTP/1.1
 Content-Type: application/json; charset=utf-8
@@ -88,6 +108,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ### `/auth/del` ###
+Удаление параметров аутентификации.
 ```
 POST https://{addr}/auth/del?{auth} HTTP/1.1
 Content-Type: application/json; charset=utf-8
@@ -101,6 +122,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ### `/link/set` ###
+Установка параметров распознавания.
 ```
 POST https://{addr}/link/set?{auth} HTTP/1.1
 Content-Type: application/json; charset=utf-8
@@ -119,6 +141,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ### `/link/del` ###
+Удаление параметров распознавания.
 ```
 POST https://{addr}/link/del?{auth} HTTP/1.1
 Content-Type: application/json; charset=utf-8
@@ -140,8 +163,9 @@ FIXME
 ```
 
 ### `/data/add` ###
+Добавление данных для распознования в зависимости от [проекта](https://github.com/pharmbase/rfc/blob/master/src/api-proj.md).
 ```
-POST https://{addr}/data/add?{auth}&mpr= HTTP/1.1
+POST https://{addr}/data/add?{auth}&{project} HTTP/1.1
 Content-Type: application/json; charset=utf-8
 
 FIXME
@@ -149,73 +173,8 @@ FIXME
 
 ### `/data/get` ###
 ```
-GET https://{addr}/data/get?{auth}&mpr= HTTP/1.1
+GET https://{addr}/data/get?{auth}&mpr={} HTTP/1.1
 ```
 ```
 FIXME
 ```
-
-<!--
-```
-{domain/service/version} => 10.0.1.116/linkdroid/v1
-/info/{action} - Информация
-/auth/{action} - Аутентификация
-/link/{action} - Связь
-/data/{action} - Входящие данные
-```
-#### `/info/get`  `200`
-
-Отдает различную информацию. Например, название и версию сервиса, которая формируется по [соглашениям](http://semver.org/).
-
-```
-GET http[s]://{domain/service/version}/info/get?<auth> 
-```
-
-```
-{
-	"AppStr":"Linkdroid",
-	"AppVer":"0.1.1",
-	"MadeIn":"go1.0.2",
-	"TypeOS":"linux/amd64"
-}
-```
-#### `/auth/set` `202`
-
-Создает или обновляет аутентификацию как пару хеш-ключей - публичного `key` (string, sha1) и секретного `val` (string).
-
-Значения для ключей `key` и `val` должны быть уникальны и расчитаны по формуле `sha1(guid)`. Каждая пара значений `key` и `val` сопоставляется в экспертной системе только с одной организацией (клиентом). Механизм распростанения ключей среди клиентов сервиса разрабатывается отдельно соотвествующими подразделениями.
-
-#### `/auth/del` `202`
-Удаляет аутентификацию по публичному ключу `key` (string).
-
-#### `/link/set` `202`
-
-Устанавливает для контрольной суммы `key` (string, sha1) ссылку на новое значение эталонного ключа `val` (string).
-
-```
-POST http[s]://{domain/service/version}/link/set?<auth> HTTP/1.1
-Content-Type: application/json
-
-
-```
-
-#### `/link/del` `202`
-	
-Удаляет ссылку для контрольной суммы `key` (string, sha1).
-
-#### `/data/add` `202`
-
-Принимает данные из различных источников. Формат и логика их последующей обработки зависит от параметра `way`, который задается разработчиками сервиса для каждого отдельного случая.
-
-`way=01` - например, чек (как один документ) из аптеки в `json`.
-
-
-```
-POST http[s]://{domain/service/version}/data/add?<auth>&way=01 HTTP/1.1
-Content-Type: application/json
-
-{
-
-}
-```
--->

@@ -15,7 +15,8 @@
 3. Общий url-формат:
 
   ```
-  http[s]://{domain}/{service}/{version}/{aspect}/{action}[?params]
+  GET  http[s]://{domain}/{service}/{version}/{aspect}/[?params]
+  POST http[s]://{domain}/{service}/{version}/{aspect}/{action}[?params]
 
   ! Временный адрес:
   	http://10.0.1.116
@@ -57,11 +58,11 @@ https = http
 /* authenticated */
 /auth/set "POST" key sum
 /auth/del "POST" key sum
+/link     "GET"  key sum mpr
 /link/set "POST" key sum
 /link/del "POST" key sum
-/link/get "GET"  key sum mpr
+/data     "GET"  key sum mpr
 /data/add "POST" key sum mpr
-/data/get "GET"  key sum mpr
 ```
 
 ### `/ping` ###
@@ -100,9 +101,7 @@ Content-Type: application/json; charset=utf-8
 		/* Public key, string */
 		"PKey": "ad0f7b32c41f311160db30fd2dc5f9f913f0aa41",
 		/* Secret key, string */
-		"SKey": "f01fd7eb1485290c10b1ac95db9710670f89bda6",
-		/* Origin key, string */
-		"OKey": "234567"
+		"SKey": "f01fd7eb1485290c10b1ac95db9710670f89bda6"
 	}
 ]
 ```
@@ -120,8 +119,16 @@ Content-Type: application/json; charset=utf-8
 	}
 ]
 ```
-
-### `/link/set` ###
+<!--
+### `/link` ###
+```
+GET https://{addr}/link/get?{auth} HTTP/1.1
+```
+```
+FIXME
+```
+-->
+### `/link/set` (FIXME) ###
 Установка параметров распознавания.
 ```
 POST https://{addr}/link/set?{auth} HTTP/1.1
@@ -134,8 +141,7 @@ Content-Type: application/json; charset=utf-8
 		"IDLink": "5577006791947779410",
 		"IDDrug": "9194777",
 		"IDBrnd": "0",
-		"IDCatg": "0",
-		"FIXME": "FIXME"
+		"IDCatg": "0"
 	}
 ]
 ```
@@ -153,10 +159,10 @@ Content-Type: application/json; charset=utf-8
 	}
 ]
 ```
-
-### `/link/get` ###
+<!--
+### `/data` ###
 ```
-GET https://{addr}/link/get?{auth} HTTP/1.1
+GET https://{addr}/data/get?{auth}&{project} HTTP/1.1
 ```
 ```
 FIXME
@@ -170,11 +176,4 @@ Content-Type: application/json; charset=utf-8
 
 FIXME
 ```
-
-### `/data/get` ###
-```
-GET https://{addr}/data/get?{auth}&mpr={} HTTP/1.1
-```
-```
-FIXME
-```
+-->

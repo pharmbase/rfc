@@ -103,7 +103,7 @@ Content-Type: application/json; charset=utf-8
 		/* Secret key, string */
 		"SKey": "f01fd7eb1485290c10b1ac95db9710670f89bda6",
 		/* Origin key, string */
--		"OKey": "234567"
+		"OKey": "234567"
 	}
 ]
 ```

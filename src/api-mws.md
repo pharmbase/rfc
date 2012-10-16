@@ -159,7 +159,7 @@ Content-Type: application/json; charset=utf-8
 	}
 ]
 ```
-<!--
+
 ### `/data` ###
 ```
 GET https://{addr}/data/get?{auth}&{project} HTTP/1.1
@@ -169,11 +169,12 @@ FIXME
 ```
 
 ### `/data/add` ###
-Добавление данных для распознования в зависимости от [проекта](https://github.com/pharmbase/rfc/blob/master/src/api-proj.md).
+Добавление данных для распознования в зависимости от [проекта](https://github.com/pharmbase/rfc/blob/master/src/api-proj.md). 
+
+[`<BODY>`](https://github.com/pharmbase/rfc/blob/master/src/fmt-phxp.md)
 ```
 POST https://{addr}/data/add?{auth}&{project} HTTP/1.1
 Content-Type: application/json; charset=utf-8
 
-FIXME
+<BODY>
 ```
--->

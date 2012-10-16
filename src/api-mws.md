@@ -82,7 +82,7 @@ GET https://{addr}/info HTTP/1.1
 	"AppStr": "MWS",
 	"AppVer": "0.0.1",
 	"AppZen": "Programming, Motherfucker",
-	"TypeOS": "linux/amd64",
+	"System": "linux/amd64",
 	"MadeIn": "go1.0.3",
 	"TimeOn": "2012-10-10 15:56:04.940722 +0300 EEST"
 }

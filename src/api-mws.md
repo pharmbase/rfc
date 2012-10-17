@@ -47,10 +47,7 @@ API реализуется двумя методами HTTP: `GET` - для по
 Тип проекта:
 {project} = mpr=project_name
 
-/* admin */
 /ping "GET"
-
-/* public */
 /info "GET"
 
 /* authenticated */
@@ -88,7 +85,7 @@ GET https://{addr}/info HTTP/1.1
 }
 ```
 
-### `/auth/set` ###
+### `/auth/set` sysdba only ###
 Установка параметров аутентификации.
 ```
 POST https://{addr}/auth/set?{auth} HTTP/1.1
@@ -97,16 +94,14 @@ Content-Type: application/json; charset=utf-8
 [
 	{
 		/* Public key, string */
-		"PKey": "ad0f7b32c41f311160db30fd2dc5f9f913f0aa41",
+		"KeyP": "ad0f7b32c41f311160db30fd2dc5f9f913f0aa41",
 		/* Secret key, string */
-		"SKey": "f01fd7eb1485290c10b1ac95db9710670f89bda6",
-		/* Origin key, string */
-		"OKey": "234567"
+		"KeyS": "f01fd7eb1485290c10b1ac95db9710670f89bda6"
 	}
 ]
 ```
 
-### `/auth/del` ###
+### `/auth/del` sysdba only ###
 Удаление параметров аутентификации.
 ```
 POST https://{addr}/auth/del?{auth} HTTP/1.1
@@ -115,7 +110,7 @@ Content-Type: application/json; charset=utf-8
 [
 	{
 		/* Public key, string */
-		"PKey": "ad0f7b32c41f311160db30fd2dc5f9f913f0aa41"
+		"KeyP": "ad0f7b32c41f311160db30fd2dc5f9f913f0aa41"
 	}
 ]
 ```
@@ -128,7 +123,7 @@ GET https://{addr}/link/get?{auth} HTTP/1.1
 FIXME
 ```
 -->
-### `/link/set` (FIXME) ###
+### `/link/set` sysdba only (FIXME) ###
 Установка параметров распознавания.
 ```
 POST https://{addr}/link/set?{auth} HTTP/1.1
@@ -136,7 +131,7 @@ Content-Type: application/json; charset=utf-8
 
 [
 	{
-		"HSum": "9e32295f8225803bb6d5fdfcc0674616a4413c1b",
+		"Hash": "9e32295f8225803bb6d5fdfcc0674616a4413c1b",
 		"Name": "В чащах юга жил бы цитрус? Да, но фальшивый экземпляр!",
 		"IDLink": "5577006791947779410",
 		"IDDrug": "9194777",
@@ -146,7 +141,7 @@ Content-Type: application/json; charset=utf-8
 ]
 ```
 
-### `/link/del` ###
+### `/link/del` sysdba only ###
 Удаление параметров распознавания.
 ```
 POST https://{addr}/link/del?{auth} HTTP/1.1
@@ -155,7 +150,7 @@ Content-Type: application/json; charset=utf-8
 [
 	{
 	 	/* Хеш-сумма SHA1 от наименования  */
-	 	"HSum": "9e32295f8225803bb6d5fdfcc0674616a4413c1b"
+	 	"Hash": "9e32295f8225803bb6d5fdfcc0674616a4413c1b"
 	}
 ]
 ```

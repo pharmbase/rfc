@@ -44,8 +44,6 @@ API реализуется двумя методами HTTP: `GET` - для по
 {addr} = 10.0.1.116
 Аутентификация по умолчанию:
 {auth} = key=sysdba&sum=f96b5d3726906aeb99fb6b2bc37f91a519cbc767
-Тип проекта:
-{project} = mpr=project_name
 
 /ping "GET"
 /info "GET"
@@ -53,11 +51,11 @@ API реализуется двумя методами HTTP: `GET` - для по
 /* authenticated */
 /auth/set "POST" key sum
 /auth/del "POST" key sum
-/link     "GET"  key sum mpr
 /link/set "POST" key sum
 /link/del "POST" key sum
-/data     "GET"  key sum mpr
-/data/add "POST" key sum mpr
+/data/add "POST" key sum
+/data/get "GET"  key sum
+/name/get "GET"  key sum
 ```
 
 ### `/ping` ###
@@ -69,7 +67,7 @@ GET https://{addr}/ping HTTP/1.1
 PONG
 ```
 
-### `/info` ###
+### `/info/get` ###
 Получение информации.
 ```
 GET https://{addr}/info HTTP/1.1
@@ -164,12 +162,12 @@ FIXME
 ```
 -->
 ### `/data/add` ###
-Добавление данных для распознования в зависимости от [проекта](https://github.com/pharmbase/rfc/blob/master/src/api-proj.md). 
+Добавление данных для распознования в зависимости от [типа технологического процесса](https://github.com/pharmbase/rfc/blob/master/src/api-proc.md), значение которого следует передавать параметром в `Content-Type`. 
 
-[`<BODY>`](https://github.com/pharmbase/rfc/blob/master/src/fmt-phxp.md)
+[`<BODY>`](https://github.com/pharmbase/rfc/blob/master/src/fmt-sale.md)
 ```
 POST https://{addr}/data/add?{auth}&{project} HTTP/1.1
-Content-Type: application/json; charset=utf-8
+Content-Type: application/json; charset=utf-8; process=sale-out.daily
 
 <BODY>
 ```

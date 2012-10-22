@@ -106,10 +106,8 @@ POST https://{addr}/auth/del?{auth} HTTP/1.1
 Content-Type: application/json; charset=utf-8
 
 [
-	{
-		/* Public key, string */
-		"KeyP": "ad0f7b32c41f311160db30fd2dc5f9f913f0aa41"
-	}
+	/* Public key, string */
+	"ad0f7b32c41f311160db30fd2dc5f9f913f0aa41"
 ]
 ```
 <!--
@@ -146,10 +144,8 @@ POST https://{addr}/link/del?{auth} HTTP/1.1
 Content-Type: application/json; charset=utf-8
 
 [
-	{
-	 	/* Хеш-сумма SHA1 от наименования  */
-	 	"Hash": "9e32295f8225803bb6d5fdfcc0674616a4413c1b"
-	}
+ 	/* Хеш-сумма SHA1 от наименования  */
+ 	"9e32295f8225803bb6d5fdfcc0674616a4413c1b"
 ]
 ```
 <!--

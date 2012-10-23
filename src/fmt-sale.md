@@ -19,12 +19,8 @@
 	"Meta": {
 		// Версия формата, int
 		"Version": 1,
-		// Отправитель (public key), string
-		"Sender": "f96b5d3726906aeb99fb6b2bc37f91a519cbc767",
 		// Агент передачи данных (программа) [*], string
 		"Agent": "My Cool Application",
-		// Содержимое согласно проекта, string[proc]
-		"Process": "sale-out.daily",
 		// Время создания этого пакета данных, string[timestamp]
 		"Timestamp": "08.10.2012 00:00:00.000000",
 		// Нижняя граница временного диапазона отбора данных, string[timestamp]
@@ -34,7 +30,19 @@
 		// Остаток на начало или конец периода [*], string[lower|upper]
 		"BalanceKind": "upper",
 		// Учетность данных [*], string[analytic|synthetic]
-		"AccountType": "analytic"
+		"AccountType": "analytic",
+		
+
+		// << !!! reserved for internal use only
+		// Отправитель (public key) [+], string
+		"ISender": "f96b5d3726906aeb99fb6b2bc37f91a519cbc767",
+		// Содержимое согласно проекта [+], string[proc]
+		"IProcess": "sale-out.daily",
+		// Время принятия этого пакета данных [+], string[timestamp]
+		"ITimestamp": "08.10.2012 00:57:28.403",
+		// Уникальный идентификатор этого пакета данных на сервере [+], string
+		"IHashstamp": "aeb99fb6b2bc37f91a519cbc767f96b5d3726906"
+		// >>
 	},
 	// Данные (массив заголовок/содержание)
 	"Data": [{
@@ -47,15 +55,15 @@
 		"Item": [{
 			// Код препарата клиента, string[40]
 			"Code": "10420",
-			// Name: Полное наименование препарата + производитель (через пробел), string[255]
-			"Name": "Авамис аэр.27,5мкг/доза бал. 30д Глаксо Велком",
+			// Полное наименование препарата + производитель (через пробел), string[255]
+			"Drug": "Авамис аэр.27,5мкг/доза бал. 30д Глаксо Велком",
 			
 
 			// << sale-in must
 			// Поставщик, string[1024]
-			"Supplier": "Рога и Копыта Корпорейшн",
-			// ЕГРПОУ (ранее ОКПО), string[12]
-			"EGRPOU": "82389009",
+			"Supp": "Рога и Копыта Корпорейшн",
+			// ОКПО (оно же ЕГРПОУ), string[12]
+			"SuppOKPO": "82389009",
 			// >>
 
 
@@ -81,11 +89,15 @@
 			// >>
 
 
-			// << recognition only
-			// Связь Морион для наименования [+]
-			"LinkName": "FIXME",
-			// Связь Морион для поставщика [+]
-			"LinkSupp": "FIXME"
+			// << !!! reserved for internal use only
+			// Хеш-сумма наименования [+], string
+			"IDrugSHA": "2fd4e1c67a2d28fced849ee1bb76e7391b93eb12",
+			// Связь Морион для наименования [+], object
+			"IDrugLNK": "FIXME",
+			// Хеш-сумма поставщика [+], string
+			"ISuppSHA": "9e32295f8225803bb6d5fdfcc0674616a4413c1b",
+			// Связь Морион для поставщика [+], object
+			"ISuppLNK": "FIXME"
 			// >>
 		}]
 	}]

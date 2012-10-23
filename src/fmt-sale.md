@@ -27,8 +27,6 @@
 		"TRangeLower": "08.10.2012 00:00:00",
 		// Верхняя граница временного диапазона отбора данных, string[timestamp]
 		"TRangeUpper": "08.10.2012 23:59:59",
-		// Остаток на начало или конец периода [*], string[lower|upper]
-		"BalanceKind": "upper",
 		// Учетность данных [*], string[analytic|synthetic]
 		"AccountType": "analytic",
 		

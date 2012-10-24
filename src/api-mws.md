@@ -53,6 +53,7 @@ API реализуется двумя методами HTTP: `GET` - для по
 /auth/del "POST" key sum
 /link/set "POST" key sum
 /link/del "POST" key sum
+/link/get "POST" key sum
 /data/add "POST" key sum
 /data/get "GET"  key sum
 /name/get "GET"  key sum
@@ -148,6 +149,16 @@ Content-Type: application/json; charset=utf-8
  	"9e32295f8225803bb6d5fdfcc0674616a4413c1b"
 ]
 ```
+
+### `/link/get` ###
+Получение параметров распознавания.
+```
+POST https://{addr}/link/get?{auth} HTTP/1.1
+Content-Type: application/json; charset=utf-8
+
+<FIXME>
+```
+
 <!--
 ### `/data` ###
 ```
@@ -166,4 +177,22 @@ POST https://{addr}/data/add?{auth}&{project} HTTP/1.1
 Content-Type: application/json; charset=utf-8; process=sale-out.daily
 
 <BODY>
+```
+
+### `/data/get` ###
+Получение данных с инъекцией информации распознования.
+```
+POST https://{addr}/data/get?{auth} HTTP/1.1
+Content-Type: application/json; charset=utf-8
+
+<FIXME>
+```
+
+### `/name/get` sysdba only ###
+Получение наименований для распознавания.
+```
+POST https://{addr}/name/get?{auth} HTTP/1.1
+Content-Type: application/json; charset=utf-8
+
+<FIXME>
 ```

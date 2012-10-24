@@ -12,6 +12,7 @@
 * `string, int, float, bool` - типы данных: “строка в двойных кавычках”, целое, число с плавающей точкой (разделитель точка “.”), логический (true|false)
 * [`string[proc]`][0]
 * `string[timestamp]` - дата и время строкой в формате"dd.mm.yyyy hh:mm:ss"
+* `string[timestamp.nano]` - дата и время строкой в формате"dd.mm.yyyy hh:mm:ss.zzzzzzzzz"
 
 ```json
 {
@@ -21,8 +22,8 @@
 		"Version": 1,
 		// Агент передачи данных (программа) [*], string
 		"Agent": "My Cool Application",
-		// Время создания этого пакета данных, string[timestamp]
-		"Timestamp": "08.10.2012 00:00:00.000000",
+		// Время создания этого пакета данных, string[timestamp.nano]
+		"Timestamp": "08.10.2012 00:00:00.001",
 		// Нижняя граница временного диапазона отбора данных, string[timestamp]
 		"TRangeLower": "08.10.2012 00:00:00",
 		// Верхняя граница временного диапазона отбора данных, string[timestamp]
@@ -36,7 +37,7 @@
 		"ISender": "f96b5d3726906aeb99fb6b2bc37f91a519cbc767",
 		// Содержимое согласно проекта [+], string[proc]
 		"IProcess": "sale-out.daily",
-		// Время принятия этого пакета данных [+], string[timestamp]
+		// Время принятия этого пакета данных [+], string[timestamp.nano]
 		"ITimestamp": "08.10.2012 00:57:28.403",
 		// Уникальный идентификатор этого пакета данных на сервере [+], string
 		"IHashstamp": "aeb99fb6b2bc37f91a519cbc767f96b5d3726906"

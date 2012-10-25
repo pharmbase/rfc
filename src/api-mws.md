@@ -64,25 +64,14 @@ API реализуется двумя методами HTTP: `GET` - для по
 ```
 GET https://{addr}/ping HTTP/1.1
 ```
-```
-PONG
-```
+[Response][fmt-pong]
 
-### `/info/get` ###
+### `/info` ###
 Получение информации.
 ```
 GET https://{addr}/info HTTP/1.1
 ```
-```
-{
-	"AppStr": "MWS",
-	"AppVer": "0.0.1",
-	"AppZen": "Programming, Motherfucker",
-	"System": "linux/amd64",
-	"MadeIn": "go1.0.3",
-	"TimeOn": "2012-10-10 15:56:04.940722 +0300 EEST"
-}
-```
+[Response][fmt-info]
 
 ### `/auth/set` sysdba only ###
 Установка параметров аутентификации.
@@ -90,15 +79,9 @@ GET https://{addr}/info HTTP/1.1
 POST https://{addr}/auth/set?{auth} HTTP/1.1
 Content-Type: application/json; charset=utf-8
 
-[
-	{
-		/* Public key, string */
-		"KeyP": "ad0f7b32c41f311160db30fd2dc5f9f913f0aa41",
-		/* Secret key, string */
-		"KeyS": "f01fd7eb1485290c10b1ac95db9710670f89bda6"
-	}
-]
+<BODY>
 ```
+[`<BODY>`][fmt-auth]
 
 ### `/auth/del` sysdba only ###
 Удаление параметров аутентификации.
@@ -106,37 +89,19 @@ Content-Type: application/json; charset=utf-8
 POST https://{addr}/auth/del?{auth} HTTP/1.1
 Content-Type: application/json; charset=utf-8
 
-[
-	/* Public key, string */
-	"ad0f7b32c41f311160db30fd2dc5f9f913f0aa41"
-]
+<BODY>
 ```
-<!--
-### `/link` ###
-```
-GET https://{addr}/link/get?{auth} HTTP/1.1
-```
-```
-FIXME
-```
--->
+[`<BODY>`][fmt-auth]
+
 ### `/link/set` sysdba only (FIXME) ###
 Установка параметров распознавания.
 ```
 POST https://{addr}/link/set?{auth} HTTP/1.1
 Content-Type: application/json; charset=utf-8
 
-[
-	{
-		"Hash": "9e32295f8225803bb6d5fdfcc0674616a4413c1b",
-		"Name": "В чащах юга жил бы цитрус? Да, но фальшивый экземпляр!",
-		"IDLink": "5577006791947779410",
-		"IDDrug": "9194777",
-		"IDBrnd": "0",
-		"IDCatg": "0"
-	}
-]
+<BODY>
 ```
+[`<BODY>`][fmt-link]
 
 ### `/link/del` sysdba only ###
 Удаление параметров распознавания.
@@ -144,13 +109,11 @@ Content-Type: application/json; charset=utf-8
 POST https://{addr}/link/del?{auth} HTTP/1.1
 Content-Type: application/json; charset=utf-8
 
-[
- 	/* Хеш-сумма SHA1 от наименования  */
- 	"9e32295f8225803bb6d5fdfcc0674616a4413c1b"
-]
+<BODY>
 ```
+[`<BODY>`][fmt-link]
 
-### `/link/get` ###
+### `/link/get` (FIXME) ###
 Получение параметров распознавания.
 ```
 POST https://{addr}/link/get?{auth} HTTP/1.1
@@ -160,7 +123,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 <!--
-### `/data` ###
+### `/data/get` ###
 ```
 GET https://{addr}/data/get?{auth}&{project} HTTP/1.1
 ```
@@ -169,30 +132,35 @@ FIXME
 ```
 -->
 ### `/data/add` ###
-Добавление данных для распознования в зависимости от [типа технологического процесса](https://github.com/pharmbase/rfc/blob/master/src/api-proc.md), значение которого следует передавать параметром в `Content-Type`. 
+Добавление данных для распознования в зависимости от [типа технологического процесса][api-proc], значение которого следует передавать параметром в `Content-Type`. 
 
-[`<BODY>`](https://github.com/pharmbase/rfc/blob/master/src/fmt-sale.md)
 ```
 POST https://{addr}/data/add?{auth}&{project} HTTP/1.1
 Content-Type: application/json; charset=utf-8; process=sale-out.daily
 
 <BODY>
 ```
+[`<process>`][api-proc]
+[`<BODY>`][fmt-sale]
 
-### `/data/get` ###
+### `/data/get` (FIXME) ###
 Получение данных с инъекцией информации распознования.
 ```
 POST https://{addr}/data/get?{auth} HTTP/1.1
-Content-Type: application/json; charset=utf-8
-
-<FIXME>
 ```
 
 ### `/name/get` sysdba only ###
 Получение наименований для распознавания.
 ```
 POST https://{addr}/name/get?{auth} HTTP/1.1
-Content-Type: application/json; charset=utf-8
-
-<FIXME>
 ```
+[Response][fmt-name]
+
+
+[api-proc]: https://github.com/pharmbase/rfc/blob/master/src/api-proc.md
+[fmt-pong]: https://github.com/pharmbase/rfc/blob/master/src/fmt-pong.md
+[fmt-info]: https://github.com/pharmbase/rfc/blob/master/src/fmt-info.md
+[fmt-auth]: https://github.com/pharmbase/rfc/blob/master/src/fmt-auth.md
+[fmt-link]: https://github.com/pharmbase/rfc/blob/master/src/fmt-link.md
+[fmt-name]: https://github.com/pharmbase/rfc/blob/master/src/fmt-name.md
+[fmt-sale]: https://github.com/pharmbase/rfc/blob/master/src/fmt-sale.md

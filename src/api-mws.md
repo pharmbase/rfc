@@ -278,17 +278,27 @@ Content-Type: application/json; charset=utf-8; process=sale-out.daily
 
 ### `/data/get` (FIXME) ###
 Получение данных с инъекцией информации распознования.
+
+[`<process>`][api-proc] [`<BODY>`][fmt-sale]
 ```
 POST https://{addr}/data/get?{auth} HTTP/1.1
+```
+```
+Content-Type: application/json; charset=utf-8; process=sale-out.daily
+200
+
+<BODY>
 ```
 
 ### `/name/get` sysdba only ###
 Получение наименований для распознавания.
 ```
 POST https://{addr}/name/get?{auth} HTTP/1.1
+```
+```
+Content-Type: application/json; charset=utf-8; process=sale-out.daily
+200
 
-```
-```
 {
 	// Метаданные
 	"Meta": {

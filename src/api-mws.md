@@ -53,8 +53,8 @@ API реализуется двумя методами HTTP: `GET` - для по
 /auth/del "POST" key sum
 /link/set "POST" key sum
 /link/del "POST" key sum
-/link/get "POST" key sum
 /data/add "POST" key sum
+/data/lnk "POST" key sum
 /data/get "GET"  key sum
 /name/get "GET"  key sum
 ```
@@ -241,18 +241,6 @@ Content-Type: application/json; charset=utf-8
 202
 ```
 
-### `/link/get` (FIXME) ###
-Получение параметров распознавания.
-```
-POST https://{addr}/link/get?{auth} HTTP/1.1
-Content-Type: application/json; charset=utf-8
-
-<FIXME>
-```
-```
-200
-```
-
 <!--
 ### `/data/get` ###
 ```
@@ -274,6 +262,18 @@ Content-Type: application/json; charset=utf-8; process=sale-out.daily
 ```
 ```
 202
+```
+
+### `/data/lnk` (FIXME) ###
+Получение информации распознавания для данных.
+```
+POST https://{addr}/data/lnk?{auth} HTTP/1.1
+Content-Type: application/json; charset=utf-8
+
+<FIXME>
+```
+```
+200
 ```
 
 ### `/data/get` (FIXME) ###

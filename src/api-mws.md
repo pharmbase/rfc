@@ -65,10 +65,10 @@ API реализуется двумя методами HTTP: `GET` - для по
 GET https://{addr}/ping HTTP/1.1
 ```
 ```
-PONG
-```
-```
+Content-Type: text/plain; charset=utf-8
 200
+
+PONG
 ```
 
 ### `/info` ###
@@ -77,6 +77,9 @@ PONG
 GET https://{addr}/info HTTP/1.1
 ```
 ```
+Content-Type: text/plain; charset=utf-8
+200
+
 Programming, Motherfucker
 
 # Service
@@ -160,9 +163,6 @@ used_cpu_user_children:0.00
 
 # Keyspace
 db0:keys=3,expires=0
-```
-```
-200
 ```
 
 ### `/auth/set` sysdba only ###

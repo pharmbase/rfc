@@ -181,7 +181,7 @@ FIXME
 [`<process>`][api-proc] [`<BODY>`][fmt-sale]
 ```
 POST https://{addr}/data/add?{auth}&{project} HTTP/1.1
-Content-Type: application/json; charset=utf-8; process=sale-out.daily
+Content-Type: application/json; charset=utf-8; process=<process>
 
 <BODY>
 ```
@@ -189,19 +189,72 @@ Content-Type: application/json; charset=utf-8; process=sale-out.daily
 202
 ```
 
-### `/data/lnk` (FIXME) ###
+### `/data/lnk` ###
 Получение информации распознавания для данных.
+
+[`<process>`][api-proc]
 ```
 POST https://{addr}/data/lnk?{auth} HTTP/1.1
-Content-Type: application/json; charset=utf-8
+Content-Type: application/json; charset=utf-8; process=<process>
 
-<FIXME>
+{
+	// Метаданные
+	"Meta": {
+		// Версия формата, int
+		"Version": 1,
+		// Агент передачи данных (программа) [*], string
+		"Agent": "My Cool Application",
+		// Время создания этого пакета данных, string[timestamp.nano]
+		"Timestamp": "08.10.2012 00:00:00.001"
+	},
+	// Данные (массив заголовок/содержание)
+	"Data": [{
+			// Код препарата клиента, string[40]
+			"Code": "10420",
+			// Полное наименование препарата + производитель (через пробел), string[255]
+			"Drug": "Авамис аэр.27,5мкг/доза бал. 30д Глаксо Велком"
+	}]
+}
 ```
 ```
+Content-Type: application/json; charset=utf-8; process=<process>
 200
+
+{
+	// Метаданные
+	"Meta": {
+		// Версия формата, int
+		"Version": 1,
+		// Агент передачи данных (программа) [*], string
+		"Agent": "My Cool Application",
+		// Время создания этого пакета данных, string[timestamp.nano]
+		"Timestamp": "08.10.2012 00:00:00.001",
+		
+		// Отправитель (public key) [+], string
+		"ISender": "f96b5d3726906aeb99fb6b2bc37f91a519cbc767",
+		// Содержимое согласно проекта [+], string[proc]
+		"IProcess": "<process>",
+		// Время принятия этого пакета данных [+], string[timestamp.nano]
+		"ITimestamp": "08.10.2012 00:57:28.403",
+		// Уникальный идентификатор этого пакета данных на сервере [+], string
+		"IHashstamp": "aeb99fb6b2bc37f91a519cbc767f96b5d3726906"
+	},
+	// Данные (массив заголовок/содержание)
+	"Data": [{
+			// Код препарата клиента, string[40]
+			"Code": "10420",
+			// Полное наименование препарата + производитель (через пробел), string[255]
+			"Drug": "Авамис аэр.27,5мкг/доза бал. 30д Глаксо Велком",
+
+			// Хеш-сумма наименования [+], string
+			"IDrugSHA": "2fd4e1c67a2d28fced849ee1bb76e7391b93eb12",
+			// Связь Морион для наименования [+], object
+			"IDrugLNK": "FIXME"
+	}]
+}
 ```
 
-### `/data/get` (FIXME) ###
+### `/data/get` ###
 Получение данных с инъекцией информации распознования.
 
 [`<process>`][api-proc] [`<BODY>`][fmt-sale]
@@ -209,7 +262,7 @@ Content-Type: application/json; charset=utf-8
 POST https://{addr}/data/get?{auth} HTTP/1.1
 ```
 ```
-Content-Type: application/json; charset=utf-8; process=sale-out.daily
+Content-Type: application/json; charset=utf-8; process=<process>
 200
 
 <BODY>
@@ -217,11 +270,13 @@ Content-Type: application/json; charset=utf-8; process=sale-out.daily
 
 ### `/name/get` sysdba only ###
 Получение наименований для распознавания.
+
+[`<process>`][api-proc]
 ```
 POST https://{addr}/name/get?{auth} HTTP/1.1
 ```
 ```
-Content-Type: application/json; charset=utf-8; process=sale-out.daily
+Content-Type: application/json; charset=utf-8; process=<process>
 200
 
 {
@@ -234,13 +289,13 @@ Content-Type: application/json; charset=utf-8; process=sale-out.daily
 		// Отправитель (public key) [+], string
 		"Sender": "f96b5d3726906aeb99fb6b2bc37f91a519cbc767",
 		// Содержимое согласно проекта [+], string[proc]
-		"Process": "sale-out.daily",
+		"Process": "<process>",
 		// Время подготовки этого пакета данных [+], string[timestamp.nano]
 		"Timestamp": "08.10.2012 00:57:28.403",
 		// Уникальный идентификатор этого пакета данных на сервере [+], string
 		"Hashstamp": "aeb99fb6b2bc37f91a519cbc767f96b5d3726906"
 	},
-	// Данные (массив заголовок/содержание)
+	// Данные (массив)
 	"Data": [{
 			// Полное наименование препарата + производитель (через пробел), string[255]
 			"Drug": "Авамис аэр.27,5мкг/доза бал. 30д Глаксо Велком",

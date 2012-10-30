@@ -3,8 +3,7 @@
 На текущий момент времени известны следующие технологические процессы:
 
 ```
-link.names
-link.catalog
+link.drug
 // sale-in
 sale-inp.monthly
 sale-inp.weekly
@@ -14,14 +13,6 @@ sale-out.monthly
 sale-out.weekly
 sale-out.daily
 ```
-
-## `link.names` ##
-
-Распознавание названий. FIXME
-
-## `link.catalog` ##
-
-Распознавание каталогов. FIXME
 
 ## `sale-in.<xxx>` ##
 

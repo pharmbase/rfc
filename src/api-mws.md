@@ -169,7 +169,7 @@ Content-Type: application/json; charset=utf-8
 <!--
 ### `/data/get` ###
 ```
-GET https://{addr}/data/get?{auth}&{project} HTTP/1.1
+GET https://{addr}/data/get?{auth} HTTP/1.1
 ```
 ```
 FIXME
@@ -180,7 +180,7 @@ FIXME
 
 [`<process>`][api-proc] [`<BODY>`][fmt-sale]
 ```
-POST https://{addr}/data/add?{auth}&{project} HTTP/1.1
+POST https://{addr}/data/add?{auth} HTTP/1.1
 Content-Type: application/json; charset=utf-8; process=<process>
 
 <BODY>

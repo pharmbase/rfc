@@ -176,12 +176,12 @@ FIXME
 ```
 -->
 ### `/data/add` ###
-Добавление данных для распознования в зависимости от [типа технологического процесса][api-proc], значение которого следует передавать параметром в `Content-Type`. 
+Добавление данных для распознования в зависимости от [типа технологического процесса][api-htag], значение которого следует передавать параметром в `Content-Type`. 
 
-[`<process>`][api-proc] [`<BODY>`][fmt-sale]
+[`<hashtag>`][api-htag] [`<BODY>`][fmt-sale]
 ```
 POST https://{addr}/data/add?{auth} HTTP/1.1
-Content-Type: application/json; charset=utf-8; process=<process>
+Content-Type: application/json; charset=utf-8; hashtag=<hashtag>
 
 <BODY>
 ```
@@ -192,10 +192,10 @@ Content-Type: application/json; charset=utf-8; process=<process>
 ### `/data/lnk` ###
 Получение информации распознавания для данных.
 
-[`<process>`][api-proc]
+[`<hashtag>`][api-htag]
 ```
 POST https://{addr}/data/lnk?{auth} HTTP/1.1
-Content-Type: application/json; charset=utf-8; process=<process>
+Content-Type: application/json; charset=utf-8; hashtag=<hashtag>
 
 {
 	// Метаданные
@@ -217,7 +217,7 @@ Content-Type: application/json; charset=utf-8; process=<process>
 }
 ```
 ```
-Content-Type: application/json; charset=utf-8; process=<process>
+Content-Type: application/json; charset=utf-8; hashtag=<hashtag>
 200
 
 {
@@ -233,7 +233,7 @@ Content-Type: application/json; charset=utf-8; process=<process>
 		// Отправитель (public key) [+], string
 		"ISender": "f96b5d3726906aeb99fb6b2bc37f91a519cbc767",
 		// Содержимое согласно проекта [+], string[proc]
-		"IProcess": "<process>",
+		"IHashtag": "<hashtag>",
 		// Время принятия этого пакета данных [+], string[timestamp.nano]
 		"ITimestamp": "08.10.2012 00:57:28.403",
 		// Уникальный идентификатор этого пакета данных на сервере [+], string
@@ -257,12 +257,12 @@ Content-Type: application/json; charset=utf-8; process=<process>
 ### `/data/get` ###
 Получение данных с инъекцией информации распознования.
 
-[`<process>`][api-proc] [`<BODY>`][fmt-sale]
+[`<BODY>`][fmt-sale]
 ```
 POST https://{addr}/data/get?{auth} HTTP/1.1
 ```
 ```
-Content-Type: application/json; charset=utf-8; process=<process>
+Content-Type: application/json; charset=utf-8;
 200
 
 <BODY>
@@ -271,12 +271,11 @@ Content-Type: application/json; charset=utf-8; process=<process>
 ### `/name/get` sysdba only ###
 Получение наименований для распознавания.
 
-[`<process>`][api-proc]
 ```
 POST https://{addr}/name/get?{auth} HTTP/1.1
 ```
 ```
-Content-Type: application/json; charset=utf-8; process=<process>
+Content-Type: application/json; charset=utf-8;
 200
 
 {
@@ -289,7 +288,7 @@ Content-Type: application/json; charset=utf-8; process=<process>
 		// Отправитель (public key) [+], string
 		"Sender": "f96b5d3726906aeb99fb6b2bc37f91a519cbc767",
 		// Содержимое согласно проекта [+], string[proc]
-		"Process": "<process>",
+		"Hashtag": "<hashtag>",
 		// Время подготовки этого пакета данных [+], string[timestamp.nano]
 		"Timestamp": "08.10.2012 00:57:28.403",
 		// Уникальный идентификатор этого пакета данных на сервере [+], string
@@ -309,5 +308,5 @@ Content-Type: application/json; charset=utf-8; process=<process>
 }
 ```
 
-[api-proc]: https://github.com/pharmbase/rfc/blob/master/src/api-proc.md
+[api-htag]: https://github.com/pharmbase/rfc/blob/master/src/api-htag.md
 [fmt-sale]: https://github.com/pharmbase/rfc/blob/master/src/fmt-sale.md

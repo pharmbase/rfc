@@ -201,7 +201,7 @@ Content-Type: application/json; charset=utf-8; hashtag=<hashtag>
 ### `/data/lnk` ###
 Получение информации распознавания для данных.
 
-[`<hashtag>`][api-htag]
+[`<hashtag>`][api-htag] (link.*)
 ```
 POST https://{addr}/data/lnk?{auth} HTTP/1.1
 Content-Type: application/json; charset=utf-8; hashtag=<hashtag>
@@ -221,7 +221,7 @@ Content-Type: application/json; charset=utf-8; hashtag=<hashtag>
 			// Код препарата клиента, string[40]
 			"Code": "10420",
 			// Полное наименование препарата + производитель (через пробел), string[255]
-			"Drug": "Авамис аэр.27,5мкг/доза бал. 30д Глаксо Велком"
+			"Name": "Авамис аэр.27,5мкг/доза бал. 30д Глаксо Велком"
 	}]
 }
 ```

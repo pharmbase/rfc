@@ -241,7 +241,7 @@ Content-Type: application/json; charset=utf-8; hashtag=<hashtag>
 		
 		// Отправитель (public key) [+], string
 		"ISender": "f96b5d3726906aeb99fb6b2bc37f91a519cbc767",
-		// Содержимое согласно проекта [+], string[proc]
+		// Содержимое согласно проекта [+], string
 		"IHashtag": "<hashtag>",
 		// Время принятия этого пакета данных [+], string[timestamp.nano]
 		"ITimestamp": "08.10.2012 00:57:28.403",
@@ -297,7 +297,7 @@ Content-Type: application/json; charset=utf-8; hashtag=<hashtag>
 		"Origin": "eb99fb6b2bc37f91a519cbc767f96b5d3726906a",
 		// Отправитель (public key) [+], string
 		"Sender": "f96b5d3726906aeb99fb6b2bc37f91a519cbc767",
-		// Содержимое согласно проекта [+], string[proc]
+		// Содержимое согласно проекта [+], string
 		"Hashtag": "<hashtag>",
 		// Время подготовки этого пакета данных [+], string[timestamp.nano]
 		"Timestamp": "08.10.2012 00:57:28.403",
@@ -306,14 +306,10 @@ Content-Type: application/json; charset=utf-8; hashtag=<hashtag>
 	},
 	// Данные (массив)
 	"Data": [{
-			// Полное наименование препарата + производитель (через пробел), string[255]
-			"Drug": "Авамис аэр.27,5мкг/доза бал. 30д Глаксо Велком",
+			// Наименование, string
+			"Name": "Авамис аэр.27,5мкг/доза бал. 30д Глаксо Велком",
 			// Хеш-сумма наименования [+], string
-			"DrugSHA": "2fd4e1c67a2d28fced849ee1bb76e7391b93eb12",
-			// Поставщик, string[1024]
-			"Supp": "Рога и Копыта Корпорейшн",
-			// Хеш-сумма поставщика [+], string
-			"SuppSHA": "9e32295f8225803bb6d5fdfcc0674616a4413c1b"
+			"NameSHA": "2fd4e1c67a2d28fced849ee1bb76e7391b93eb12"
 	}]
 }
 ```

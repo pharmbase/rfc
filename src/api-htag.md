@@ -5,7 +5,11 @@
 ```
 // link
 link.addr
+link.addr.set
+link.addr.del
 link.drug
+link.drug.set
+link.drug.del
 // data sale-in
 data.sale-inp.monthly
 data.sale-inp.weekly

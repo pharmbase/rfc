@@ -1,7 +1,9 @@
 ```
-org/n/get?code="value"
-org/n/set
+org/get?type="value"&code="value"
+org/set
 ```
+
+### `type="1"` - сеть ###
 
 ```json
 {
@@ -38,10 +40,7 @@ org/n/set
 }
 ```
 
-```
-org/a/get?code="value"
-org/a/set
-```
+### `type="2"` - точка ###
 
 ```json
 {

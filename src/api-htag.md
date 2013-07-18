@@ -3,21 +3,29 @@
 Тематическая метка это строка, которая дополнительно специфицирует информацию (данные) в запросах. Например, такими строками могут быть выражены технологические процессы. На текущий момент времени известны следующие метки:
 
 ```
-// link
+// link addr (orgs)
 link.addr
 link.addr.set
 link.addr.del
+
+// link drug
 link.drug
 link.drug.set
 link.drug.del
+
 // data sale-in
 data.sale-inp.monthly
 data.sale-inp.weekly
 data.sale-inp.daily
+
 // data sale-out
 data.sale-out.monthly
 data.sale-out.weekly
 data.sale-out.daily
+
+// data geo
+data.geostore
+
 ```
 
 ## `link.<xxx>` ##
@@ -69,4 +77,9 @@ data.sale-out.daily
 ```
 [`Format`][0]
 
+## `data.geos` ##
+Сбор данных для гео-аптеки.
+[`Format`][1]
+
 [0]: https://github.com/pharmbase/rfc/blob/master/src/fmt-sale.md
+[1]: https://github.com/pharmbase/rfc/blob/master/src/fmt-geos.md

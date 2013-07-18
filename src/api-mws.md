@@ -132,6 +132,7 @@ Content-Type: application/json; charset=utf-8
 POST https://{addr}/link/set?{auth} HTTP/1.1
 Content-Type: application/json; charset=utf-8; hashtag=<hashtag>
 
+// for link.drug only
 [
 	{
 		//
@@ -146,6 +147,24 @@ Content-Type: application/json; charset=utf-8; hashtag=<hashtag>
 		"IDBrnd": "0",
 		//
 		"IDCatg": "0"
+	}
+]
+
+// vs.
+
+// for link.addr only
+[
+	{
+		//
+		"Hash": "9e32295f8225803bb6d5fdfcc0674616a4413c1b",
+		//
+		"Name": "В чащах юга жил бы цитрус? Да, но фальшивый экземпляр!",
+		//
+		"IDLink": "9194777941055770067",
+		//
+		"IDAddr": "5577006791947779410",
+		//
+		"EGRPOU": "9194777"
 	}
 ]
 ```
@@ -170,7 +189,7 @@ Content-Type: application/json; charset=utf-8; hashtag=<hashtag>
 ```
 
 ### `/link/get` ###
-Получение данных с инъекцией информации распознования.
+Получение данных (обратно /link/set).
 
 [`<hashtag>`][api-htag]
 ```
@@ -180,7 +199,7 @@ POST https://{addr}/data/get?{auth} HTTP/1.1
 Content-Type: application/json; charset=utf-8; hashtag=<hashtag>
 200
 
-<BODY>
+<BODY see /link/get for details>
 ```
 
 
@@ -288,6 +307,7 @@ POST https://{addr}/name/get?{auth} HTTP/1.1
 Content-Type: application/json; charset=utf-8; hashtag=<hashtag>
 200
 
+// for data.sale-* only
 {
 	// Метаданные
 	"Meta": {
@@ -310,6 +330,36 @@ Content-Type: application/json; charset=utf-8; hashtag=<hashtag>
 			"Name": "Авамис аэр.27,5мкг/доза бал. 30д Глаксо Велком",
 			// Хеш-сумма наименования [+], string
 			"NameSHA": "2fd4e1c67a2d28fced849ee1bb76e7391b93eb12"
+	}]
+}
+
+// vs.
+
+// for data.geostore
+{
+	// Метаданные
+	"Meta": {
+		// Версия формата, int
+		"Version": 1,
+		// Оригинальный источник данных (IHashstamp) [+], string
+		"Origin": "eb99fb6b2bc37f91a519cbc767f96b5d3726906a",
+		// Отправитель (public key) [+], string
+		"Sender": "f96b5d3726906aeb99fb6b2bc37f91a519cbc767",
+		// Содержимое согласно проекта [+], string
+		"Hashtag": "<hashtag>",
+		// Время подготовки этого пакета данных [+], string[timestamp.nano]
+		"Timestamp": "08.10.2012 00:57:28.403",
+		// Уникальный идентификатор этого пакета данных на сервере [+], string
+		"Hashstamp": "aeb99fb6b2bc37f91a519cbc767f96b5d3726906"
+	},
+	// Данные (массив)
+	"Data": [{
+			// Наименование, string
+			"Name": "Авамис аэр.27,5мкг/доза бал. 30д Глаксо Велком",
+			// Хеш-сумма наименования [+], string
+			"NameSHA": "2fd4e1c67a2d28fced849ee1bb76e7391b93eb12",\
+			/* ЕГРПОУ */
+			"EGRPOU": "95738475"
 	}]
 }
 ```

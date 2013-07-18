@@ -1,6 +1,6 @@
 ```
 org/get?type="value"&code="value"
-org/set
+org/set?type="value"&code="value"
 ```
 
 ### `type="1"` - сеть ###

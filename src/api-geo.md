@@ -4,7 +4,7 @@
 
 ## Соглашения ##
 
-1. Протокол передачи данных [HTTPS](http://ru.wikipedia.org/wiki/HTTPS).
+1. Протокол передачи данных [HTTP](http://ru.wikipedia.org/wiki/HTTP).
 
 2. Формат приема-передачи данных [JSON](http://json.org/).
 

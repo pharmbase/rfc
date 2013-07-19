@@ -29,7 +29,7 @@ API реализуется двумя методами HTTP: `GET` - для по
 Получение списка названий брендов по введенным начальным символам (более одного). 
 
 ```
-GET https://example.com/brand/get?key="value"&sum="value"&name="value" HTTP/1.1
+GET http://example.com/brand/get?key="value"&sum="value"&name="value" HTTP/1.1
 ```
 
 Результат отсортирован по названию в алфавитном порядке. Каждый бренд содержит список его лекарственных форм, которые получаются отдельным запросом (см. ниже)
@@ -59,7 +59,7 @@ GET https://example.com/brand/get?key="value"&sum="value"&name="value" HTTP/1.1
 Получение списка названий лекарственных форм (товара) по коду или по названию бренда. 
 
 ```
-GET https://example.com/dform/get?key="value"&sum="value"&code_or_name="value" HTTP/1.1
+GET http://example.com/dform/get?key="value"&sum="value"&code_or_name="value" HTTP/1.1
 ```
 
 Результат отсортирован по названию + форме выпуска +  значению количества действующего вещества + номеру в упаковке + производителю. Каждая лекарственная форма может продаваться в нескольких аптеках, список которых получается отдельным запросом (см. ниже)
@@ -89,7 +89,7 @@ GET https://example.com/dform/get?key="value"&sum="value"&code_or_name="value" H
 Получение списка аптек по коду лекарственной формы. 
 
 ```
-GET https://example.com/dform/get?key="value"&sum="value"&code="value"&latlng="value1,value2" HTTP/1.1
+GET http://example.com/dform/get?key="value"&sum="value"&code="value"&latlng="value1,value2" HTTP/1.1
 ```
 
 Результат ограничен по количеству в зависимости от известности местоположения пользователя:
@@ -147,7 +147,7 @@ GET https://example.com/dform/get?key="value"&sum="value"&code="value"&latlng="v
 Получение расширенной информации об искомой аптеке по ее коду.
 
 ```
-GET https://example.com/dform/get?key="value"&sum="value"&code="value" HTTP/1.1
+GET http://example.com/dform/get?key="value"&sum="value"&code="value" HTTP/1.1
 ```
 
 Результат все доступные данные по аптеке (* обязательные поля).

@@ -84,12 +84,12 @@ GET http://example.com/dform/get?key="value"&sum="value"&code_or_name="value" HT
 ]
 ```
 
-### `/store/get` - аптеки (где?)
+### `/where/get` - аптеки (где?)
 
 Получение списка аптек по коду лекарственной формы. 
 
 ```
-GET http://example.com/dform/get?key="value"&sum="value"&code="value"&latlng="value1,value2" HTTP/1.1
+GET http://example.com/where/get?key="value"&sum="value"&dform="value"&latlng="value1,value2" HTTP/1.1
 ```
 
 Результат ограничен по количеству в зависимости от известности местоположения пользователя:
@@ -142,12 +142,12 @@ GET http://example.com/dform/get?key="value"&sum="value"&code="value"&latlng="va
 ]
 ```
 
-### `/store/get` - аптеки (где?)
+### `/store/get`
 
 Получение расширенной информации об искомой аптеке по ее коду.
 
 ```
-GET http://example.com/dform/get?key="value"&sum="value"&code="value" HTTP/1.1
+GET http://example.com/store/get?key="value"&sum="value"&code="value" HTTP/1.1
 ```
 
 Результат все доступные данные по аптеке (* обязательные поля).
@@ -194,3 +194,7 @@ GET http://example.com/dform/get?key="value"&sum="value"&code="value" HTTP/1.1
 }
 
 ```
+
+### `/store/set`
+
+FIXME

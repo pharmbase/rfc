@@ -147,7 +147,7 @@ GET https://example.com/dform/get?key="value"&sum="value"&code="value"&latlng="v
 GET https://example.com/dform/get?key="value"&sum="value"&code="value" HTTP/1.1
 ```
 
-Результат все доступные данные по аптеке.
+Результат все доступные данные по аптеке (* обязательные поля).
 
 
 ```json
@@ -170,8 +170,7 @@ GET https://example.com/dform/get?key="value"&sum="value"&code="value" HTTP/1.1
 	"Latitude": 50.451267,
 	// Координата Долгота *
 	"Longitude": 30.499932,
-	// Описание режима работы торговой точки *
-	// FIXME: array [day:{time1-time2}]
+	// Описание режима работы торговой точки * FIXME
 	"DescMode": "Пн-Пт: с 8-00 до 21-00\nСб: с 9-00 до 19-00\nВс: выходной",
 	// Описание проезда
 	"DescRoute": "От \"Цирка\" марш. №439 две ост.",

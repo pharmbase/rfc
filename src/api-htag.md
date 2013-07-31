@@ -77,8 +77,9 @@ data.geostore
 ```
 [`Format`][0]
 
-## `data.geos` ##
+## `data.geostore` ##
 Сбор данных для гео-аптеки.
+
 [`Format`][1]
 
 [0]: https://github.com/pharmbase/rfc/blob/master/src/fmt-sale.md

@@ -19,7 +19,7 @@
 По умолчанию "public key" = `sysdba`, а "secret key" = `masterkey`, следовательно при `sha1(sysdbamasterkey)` параметры для аутентификации будут записаны так:
   
   ```
-  <auth> => key=sysdba&sum=f96b5d3726906aeb99fb6b2bc37f91a519cbc767
+  keysum=sysdba,f96b5d3726906aeb99fb6b2bc37f91a519cbc767
   ```
 
 ## Методы ##
@@ -105,7 +105,6 @@ GET http://example.com/shop/get?code=value&latlng=value1,value2&keysum=value1,va
 [
 	{
 		"Code": "5d372f91cb9a59f96bc7676906aeb19fb6b2bc37", // Уникальный иденификатор
-		"Name": "Аптека 36.6",                              // Название аптеки
 		"Latitude": 80.4567,                                // Координата Широта
 		"Longitude": 67.999432,                             // Координата Долгота
 		"Level": 4,                                         // Рейтинг сервисов аптеки
@@ -114,7 +113,6 @@ GET http://example.com/shop/get?code=value&latlng=value1,value2&keysum=value1,va
 	},
 	{
 		"Code": "cbc5d372f917906aeb199a59f96b676fb6b2bc37",
-		"Name": "Аптека Доброго Дня",
 		"Latitude": 50.451267,
 		"Longitude": 30.499932,
 		"Level": 5,
@@ -123,7 +121,6 @@ GET http://example.com/shop/get?code=value&latlng=value1,value2&keysum=value1,va
 	},
 	{
 		"Code": "06aeb199a59f96b5d91cbc7676fb6b2bc379372f",
-		"Name": "Аптека Сити",
 		"Latitude": 57.465127,
 		"Longitude": 28.932499,
 		"Level": 4,
@@ -158,6 +155,7 @@ GET http://example.com/orgs/get?code=value&keysum=value1,value2 HTTP/1.1
 	"AddrPost": "01054",                                   // Почтовый индекс
 	"AddrStreet": "ул.Воровского, 27",                     // Улица, дом
 	"ContactName": "Сидоров Петр Иванович",                // Контактное лицо
+	"ContactMail": "mail@example.com",                     // Контактная почта
 	"ContactPhone": "(044)4515602",                        // Контактный телефон
 	"Latitude": 50.451267,                                 // Координата Широта
 	"Longitude": 30.499932,                                // Координата Долгота
@@ -170,10 +168,11 @@ GET http://example.com/orgs/get?code=value&keysum=value1,value2 HTTP/1.1
 	"TypeBooking": "бронирование",                         // Бронирование/заказ ^
 	"DescDelivery": "самомывоз",                           // Описание условий доставки/самовывоза ^
 	"DescBooking": "бронирование в течение 2 суток",       // Описание условий бронипрования/заказа ^
-	"Active": true                                         // Признак активности аккаунта
+	"Active": true                                         // Признак активности аккаунта по Аксиоме
 }
 
 ```
+Сеть.
 
 ```json
 {
@@ -195,8 +194,11 @@ GET http://example.com/orgs/get?code=value&keysum=value1,value2 HTTP/1.1
 	"AddrPhysicPost": "01054",                           // Физический адрес: Почтовый индекс
 	"AddrPhysicStreet": "ул.Воровского, 27",             // Физический адрес: Улица, дом
 	"ContactName": "Сидоров Петр Иванович",              // Контактное лицо
+	"ContactMail": "mail@example.com",                   // Контактная почта
 	"ContactPhone": "(044)4515602",                      // Контактный телефон
 	"Director": "Иван Петрович Сидоров",                 // Директор (ФИО)
+	"SiteCorp": "http://apteka-example.com.ua",          // Сайт корпоративный
+	"SiteSale": "http://sale.apteka-example.com.ua",     // Сайт продажный
 	"License": "АВ №574839",                             // Лицензия номер
 	"LicenseStart": "12.08.2013",                        // Лицензия дата начала
 	"LicenseFinish": "12.08.2018",                       // Лицензия дата окончания
@@ -206,7 +208,7 @@ GET http://example.com/orgs/get?code=value&keysum=value1,value2 HTTP/1.1
 	"NoINN": "123456789098",                             // Индивидуальный налоговый номер (ИНН) ^
 	"NoREG": "987465738",                                // Номер свидетельства регистрации ^
 	"NoVAT": "847563729",                                // Номер свидетельства плательщика НДС ^
-	"Active": true                                       // Признак активности аккаунта
+	"Active": true                                       // Признак активности аккаунта по Аксиоме
 }
 ```
 

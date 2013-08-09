@@ -131,7 +131,7 @@ GET http://example.com/shop/get?code=value&latlng=value1,value2&keysum=value1,va
 ]
 ```
 
-### `/orgs/get` `/orgs/set`
+### `/orgs/get` `/orgs/set` `/orgs/del`
 
 Получение расширенной информации об искомой аптеке по ее коду.
 
@@ -210,6 +210,18 @@ GET http://example.com/orgs/get?code=value&keysum=value1,value2 HTTP/1.1
 	"NoVAT": "847563729",                                // Номер свидетельства плательщика НДС ^
 	"Active": true                                       // Признак активности аккаунта по Аксиоме
 }
+```
+
+Изменение, параметр `code` не указан, то создается новая запись (идентификатор будет возвращен в теле ответа)
+
+```
+POST http://example.com/orgs/set?code=value&keysum=value1,value2 HTTP/1.1
+```
+
+Удаление
+
+```
+POST http://example.com/orgs/del?code=value&keysum=value1,value2 HTTP/1.1
 ```
 
 ### `/data/add`

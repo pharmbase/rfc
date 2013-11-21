@@ -22,6 +22,7 @@ data.sale-inp.daily
 data.sale-out.monthly
 data.sale-out.weekly
 data.sale-out.daily
+data.sale-out.daily.by 
 
 // data geo
 data.geostore

@@ -318,9 +318,9 @@ filter:
   1. form
   2. dose
   3. pack
-  4. numb
-  5. name + " " + make
-  6. note
+  4. note
+  5. numb
+  6. name + " " + make
 ```
 
 Предложение

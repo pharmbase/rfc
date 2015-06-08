@@ -34,6 +34,7 @@
 		"rel_sha": "string", // SHA1(len1024("name/head: addr"))
 
 		// Объект добавляется сервисом распознавания (всегда)
+		"sky_ip": "string",   // IP адрес исходного отправителя
 		"sky_key": "string",  // Ключ исходного отправителя
 		"sky_tag": "string",  // Значение Morion-Skynet-Tag
 		"sky_sha": "string",  // SHA1(data[{},...])

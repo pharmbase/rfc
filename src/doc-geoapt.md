@@ -22,7 +22,7 @@
     }]
 }
 ```
-Пример файла *data.json* с данными для 3 записей:
+Пример файла *data.json* с данными из 3 позиций:
 ```json
 {
     "Meta": {
@@ -63,7 +63,7 @@
 *  В России - https://skynet.proximaresearch.ru/data/add
 
 Значение параметра *X-Morion-Skynet-Tag*:
-* В Украины - data.geoapt.ua
+* В Украине - data.geoapt.ua
 * В России - data.geoapt.ru
 
 Значение параметра *X-Morion-Skynet-Key*:
@@ -71,12 +71,12 @@
 
 Пример команды отправки файла с данными *data.json* в Украине при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -A "UniqUserAgent" -T "data.json" -H "X-Morion-Skynet-Tag: data.geoapt.ua" -H "X-Morion-Skynet-Key: xxxxxxxx" -k https://skynet.morion.ua/data/add"
+curl -X POST -A "UniqUserAgent" -T "data.json" -H "X-Morion-Skynet-Tag: data.geoapt.ua" -H "X-Morion-Skynet-Key: xxxxxxxx" -k https://skynet.morion.ua/data/add
 ```
 
 Пример команды отправки файла с данными *data.json* в России при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -A "UniqUserAgent" -T "data.json" -H "X-Morion-Skynet-Tag: data.geoapt.ru" -H "X-Morion-Skynet-Key: xxxxxxxx" -k https://skynet.proximaresearch.ru/data/add"
+curl -X POST -A "UniqUserAgent" -T "data.json" -H "X-Morion-Skynet-Tag: data.geoapt.ru" -H "X-Morion-Skynet-Key: xxxxxxxx" -k https://skynet.proximaresearch.ru/data/add
 ```
 
 Рекомендуется отправлять данные программно прямо из своих учетных систем при помощи доступных http-клиентов, минуя этап формирования файла с данными на жестком диске.

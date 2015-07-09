@@ -4,15 +4,16 @@
 {
 	"meta": {
 		// Данные формируются источником данных
-		"lang": "string", 	  // Язык оформления заказа
-		"shop_id": "string", 	  // Идентификатор торговой точки (внутренний код)
-		"client_name": "string",  // Имя клиента
-		"client_phone": "string", // Телефон клиента
-		"client_email": "string", // Email клиента
-		"booking_date": "string", // Время истекания брони
+		"lang": "string", 	    // Язык оформления заказа
+		"shop_id": "string", 	    // Идентификатор торговой точки (внутренний код)
+		
+		"client_name": "string",    // Имя клиента
+		"client_phone": "string",   // Телефон клиента
+		"client_email": "string",   // Email клиента
+		"client_booking": "string", // Время истекания брони
 
 		// Добавляется сервером API
-		"client_id": "string", // Идентификатор запроса
+		"req_id": "string", // Идентификатор запроса
 
 		// Добавляется аптекой в случае ответа
 		"status_code": "string", // Статус обработки запроса ("Ok", "Err")

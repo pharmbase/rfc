@@ -54,7 +54,7 @@
             "id": "1031",
             "name": "Авелокс табл. 400мг №5 Bayer",
             "quant": 5,
-            "price": 464.02
+            "price": 464.02,
             "balance": 14.0,
             "reimbur": 1,
             "q_inp": 15.0,

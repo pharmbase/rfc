@@ -84,32 +84,32 @@
 *  В Казахстане - https://skynet.morion.ua/data/add
 
 Значение параметра *X-Morion-Skynet-Tag*:
-* В Украине -     data.sale-inp.monthly.ua | data.sale-inp.weekly.ua | data.sale-inp.daily.ua
-* В Беларуссии-   data.sale-inp.monthly.by | data.sale-inp.weekly.by | data.sale-inp.daily.by
-* В России -      data.sale-inp.monthly.ru | data.sale-inp.weekly.ru | data.sale-inp.daily.ru
-* В Казахстане -  data.sale-inp.monthly.kz | data.sale-inp.weekly.kz | data.sale-inp.daily.kz
+* В Украине -     data.sale-out.[daily|weekly|monthly].ua
+* В Беларуссии -  data.sale-out.[daily|weekly|monthly].by
+* В России -      data.sale-out.[daily|weekly|monthly].ru
+* В Казахстане -  data.sale-out.[daily|weekly|monthly].kz
 
 Значение параметра *X-Morion-Skynet-Key*:
 * Устанавливается при подписании договора, уточняйте у вашего менеджера
 
 Пример команды отправки файла с данными *data.json* в Украине при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -A "UniqUserAgent" -T "data.json" -H "X-Morion-Skynet-Tag: data.sale-inp.daily.ua" -H "X-Morion-Skynet-Key: xxxxxxxx" -k https://skynet.morion.ua/data/add
+curl -X POST -A "UniqUserAgent" -T "data.json" -H "X-Morion-Skynet-Tag: data.sale-out.daily.ua" -H "X-Morion-Skynet-Key: xxxxxxxx" -k https://skynet.morion.ua/data/add
 ```
 
 Пример команды отправки файла с данными *data.json* в Беларуссии при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -A "UniqUserAgent" -T "data.json" -H "X-Morion-Skynet-Tag: data.sale-inp.daily.by" -H "X-Morion-Skynet-Key: xxxxxxxx" -k https://skynet.morion.ua/data/add
+curl -X POST -A "UniqUserAgent" -T "data.json" -H "X-Morion-Skynet-Tag: data.sale-out.daily.by" -H "X-Morion-Skynet-Key: xxxxxxxx" -k https://skynet.morion.ua/data/add
 ```
 
 Пример команды отправки файла с данными *data.json* в России при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -A "UniqUserAgent" -T "data.json" -H "X-Morion-Skynet-Tag: data.sale-inp.daily.ru" -H "X-Morion-Skynet-Key: xxxxxxxx" -k https://skynet.proxima-research.ru/data/add
+curl -X POST -A "UniqUserAgent" -T "data.json" -H "X-Morion-Skynet-Tag: data.sale-out.daily.ru" -H "X-Morion-Skynet-Key: xxxxxxxx" -k https://skynet.proxima-research.ru/data/add
 ```
 
 Пример команды отправки файла с данными *data.json* в Казахстане при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -A "UniqUserAgent" -T "data.json" -H "X-Morion-Skynet-Tag: data.sale-inp.daily.kz" -H "X-Morion-Skynet-Key: xxxxxxxx" -k https://skynet.morion.ua/data/add
+curl -X POST -A "UniqUserAgent" -T "data.json" -H "X-Morion-Skynet-Tag: data.sale-out.daily.kz" -H "X-Morion-Skynet-Key: xxxxxxxx" -k https://skynet.morion.ua/data/add
 ```
 
 Рекомендуется отправлять данные программно прямо из своих учетных систем при помощи доступных http-клиентов, минуя этап формирования файла с данными на жестком диске.

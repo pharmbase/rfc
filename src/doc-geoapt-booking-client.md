@@ -7,10 +7,8 @@
 2. Формат приема-передачи данных [JSON] созданный в кодировке [UTF-8] без [BOM].
 
 3. Общий url-формат:
-
   ```
   POST http://{domain}/{service}/{aspect}/{action}
-
   ```
 
 4. Коды состояния [стандартные](http://en.wikipedia.org/wiki/List_of_HTTP_status_codes) и возвращаются всегда. Клиент имеет право на их интерпретацию. Ошибки могут быть дополнительно подробно описаны в теле ответа запроса.
@@ -137,3 +135,10 @@ Content-Type: text/plain; charset=utf-8
 Content-Type: text/plain; charset=utf-8
 504
 ```
+
+[Markdown]:https://ru.wikipedia.org/wiki/Markdown
+[JSON]:http://json.org/json-ru.html
+[UTF-8]:https://ru.wikipedia.org/w/index.php?title=UTF-8
+[BOM]:https://ru.wikipedia.org/w/index.php?oldid=70741439
+[HTTP]:https://ru.wikipedia.org/wiki/HTTP
+[cURL]:https://ru.wikipedia.org/wiki/CURL

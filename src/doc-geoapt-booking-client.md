@@ -23,7 +23,7 @@ GET http://{addr}/booking/ping?id={id}
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "ping.json" https://{addr}/booking/ping?id=500111
+curl -X POST http://{addr}/booking/ping?id=500111
 ```
 
 В случае успеха будет получен ответ:
@@ -65,7 +65,7 @@ POST http://{addr}/booking/request_box
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "order.json" https://{addr}/booking/request_box
+curl -X POST -T "order.json" http://{addr}/booking/request_box
 ```
 
 В случае успеха будет получен ответ в следующем формате:

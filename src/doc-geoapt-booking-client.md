@@ -1,4 +1,4 @@
-# Инструкция по отправке данных клиентом в geoapteka.ua/ru с целью бронирования товара
+# API бронирования данных в geoapteka.ua/ru
 *Этот файл поддерживается в формате [Markdown]*
 
 ## Соглашения
@@ -8,7 +8,7 @@
 
 3. Общий url-формат:
   ```
-  POST http://{domain}/{service}/{aspect}/{action}
+  POST http://{addr}/{aspect}/{action}
   ```
 
 4. Коды состояния [стандартные](http://en.wikipedia.org/wiki/List_of_HTTP_status_codes) и возвращаются всегда. Клиент имеет право на их интерпретацию. Ошибки могут быть дополнительно подробно описаны в теле ответа запроса.
@@ -16,46 +16,37 @@
 ## Методы
 
 ### `/ping`
-Проверка доступности аптеки для возможности бронирования
+Проверка доступности аптеки для возможности бронирования.
 ```
-POST http://{addr}/booking/ping
-```
-
-Сообщение отправляется в следующем формате:
-```json
-{
-    "id": "string" // Идентификатор торговой точки ("id_morion")
-}
+GET http://{addr}/booking/ping?id={id}
 ```
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "ping.json" https://{addr}/booking/ping
+curl -X POST -T "ping.json" https://{addr}/booking/ping?id=500111
 ```
 
 В случае успеха будет получен ответ:
 ```
-Content-Type: text/plain; charset=utf-8
 200
 ```
 
 В случае недоступности аптеки:
 ```
-Content-Type: text/plain; charset=utf-8
 204
 ```
 
-### `/client_order`
-Запрос на создание резерва в торговой точке
+### `/request_box`
+Запрос на создание резерва в торговой точке.
 ```
-POST http://{addr}/booking/client_order
+POST http://{addr}/booking/request_box
 ```
 
 Первое сообщение отправляется в следующем формате:
 ```json
 {
     "meta": {
-        "id_shop": "string",  // Идентификатор торговой точки ("id_morion")
+        "id_shop": "string",  // Идентификатор торговой точки
         "id_lang": "string",  // Идентификатор языка ("ru", "ua")
 
         "client_name": "string",   // Имя
@@ -64,7 +55,7 @@ POST http://{addr}/booking/client_order
         "client_expiry": "string"  // Время истечение срока брони в формате RFC822
     },
     "data": [{
-        "id": "string", // Идентификатор товара ("id_morion")
+        "id": "string", // Идентификатор товара
         "quant": 0.0,   // Количество (float)
         "price": 0.0    // Цена (float)
     }]
@@ -74,7 +65,7 @@ POST http://{addr}/booking/client_order
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "order.json" https://{addr}/booking/client_order
+curl -X POST -T "order.json" https://{addr}/booking/request_box
 ```
 
 В случае успеха будет получен ответ в следующем формате:
@@ -82,7 +73,7 @@ curl -X POST -T "order.json" https://{addr}/booking/client_order
 {
     "meta": {
         "id": "string",       // Идентификатор запроса
-        "id_shop": "string",  // Идентификатор торговой точки (внутренний код)
+        "id_shop": "string",  // Идентификатор торговой точки
         "id_lang": "string",  // Идентификатор языка ("ru", "ua")
 
         "client_name": "string",   // Имя
@@ -94,7 +85,7 @@ curl -X POST -T "order.json" https://{addr}/booking/client_order
         "status_text": "string"  // Сообщение клиенту от аптеки
     },
     "data": [{
-        "id": "string", // Идентификатор товара ("id_morion")
+        "id": "string", // Идентификатор товара
         "quant": 0.0,   // Количество (float)
         "price": 0.0    // Цена (float)
     }]
@@ -107,7 +98,7 @@ curl -X POST -T "order.json" https://{addr}/booking/client_order
 {
     "meta": {
         "id": "string",       // Идентификатор запроса ((!)полученный в предыдущем запросе(!))
-        "id_shop": "string",  // Идентификатор торговой точки (внутренний код)
+        "id_shop": "string",  // Идентификатор торговой точки
         "id_lang": "string",  // Идентификатор языка ("ru", "ua")
 
         "client_name": "string",   // Имя
@@ -116,7 +107,7 @@ curl -X POST -T "order.json" https://{addr}/booking/client_order
         "client_expiry": "string", // Время истечение срока брони в формате RFC822
     },
     "data": [{
-        "id": "string", // Идентификатор товара ("id_morion")
+        "id": "string", // Идентификатор товара
         "quant": 0.0,   // Количество (float)
         "price": 0.0    // Цена (float)
     }]
@@ -124,15 +115,21 @@ curl -X POST -T "order.json" https://{addr}/booking/client_order
 }
 ```
 
-Возможны следующие ошибки:
+Возможны следующие статус коды:
+* Заказ принят:
+```
+202
+```
+* Требуется повторный запрос:
+```
+449
+```
 * Сервис не в состоянии передать данные торговой точке:
 ```
-Content-Type: text/plain; charset=utf-8
 502
 ```
 * Превышено время ожидания ответа от торговой точки:
 ```
-Content-Type: text/plain; charset=utf-8
 504
 ```
 

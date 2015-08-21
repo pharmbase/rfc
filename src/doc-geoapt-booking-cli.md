@@ -8,7 +8,8 @@
 
 3. Общий url-формат:
   ```
-  POST http://{addr}/{aspect}/{action}
+  POST http://{addr}/{aspect}/{user}/{action}
+  GET  http://{addr}/{aspect}/{user}/{action}
   ```
 
 4. Коды состояния [стандартные](http://en.wikipedia.org/wiki/List_of_HTTP_status_codes) и возвращаются всегда. Клиент имеет право на их интерпретацию. Ошибки могут быть дополнительно подробно описаны в теле ответа запроса.
@@ -18,15 +19,15 @@
 ### `/ping`
 Проверка доступности аптеки для возможности бронирования.
 ```
-GET http://{addr}/booking/ping?id={id}
+GET http://{addr}/booking/cli/ping?id={shop_id}
 ```
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -X POST http://{addr}/booking/ping?id=500111
+curl -X GET http://{addr}/booking/cli/ping?id=500111
 ```
 
-В случае успеха будет получен ответ:
+В случае успеха будет получен код состояния:
 ```
 200
 ```
@@ -39,79 +40,77 @@ curl -X POST http://{addr}/booking/ping?id=500111
 ### `/request_box`
 Запрос на создание резерва в торговой точке.
 ```
-POST http://{addr}/booking/request_box
+POST http://{addr}/booking/cli/request_box
 ```
 
 Первое сообщение отправляется в следующем формате:
 ```json
 {
     "meta": {
-        "id_shop": "string",  // Идентификатор торговой точки
-        "id_lang": "string",  // Идентификатор языка ("ru", "ua")
+        "id_shop": "string", // Идентификатор торговой точки
+        "id_lang": "string", // Идентификатор языка ("ru", "ua")
 
-        "client_name": "string",   // Имя
-        "client_phone": "string",  // Телефон
-        "client_email": "string",  // Эл. почта
-        "client_expiry": "string"  // Время истечение срока брони в формате RFC822
+        "client_name":   "string", // Имя
+        "client_phone":  "string", // Телефон
+        "client_email":  "string", // Эл. почта
+        "client_expiry": "string"  // Время истечение срока брони в формате RFC3339
     },
     "data": [{
         "id": "string", // Идентификатор товара
         "quant": 0.0,   // Количество (float)
         "price": 0.0    // Цена (float)
     }]
-
 }
 ```
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "order.json" http://{addr}/booking/request_box
+curl -X POST -T "order.json" http://{addr}/booking/cli/request_box
 ```
 
 В случае успеха будет получен ответ в следующем формате:
 ```json
 {
     "meta": {
-        "id": "string",       // Идентификатор запроса
-        "id_shop": "string",  // Идентификатор торговой точки
-        "id_lang": "string",  // Идентификатор языка ("ru", "ua")
+        "id":      "string", // Идентификатор запроса
+        "id_shop": "string", // Идентификатор торговой точки
+        "id_lang": "string", // Идентификатор языка ("ru", "ua")
 
-        "client_name": "string",   // Имя
-        "client_phone": "string",  // Телефон
-        "client_email": "string",  // Эл. почта
-        "client_expiry": "string", // Время истечение срока брони в формате RFC822
+        "client_name":   "string", // Имя
+        "client_phone":  "string", // Телефон
+        "client_email":  "string", // Эл. почта
+        "client_expiry": "string", // Время истечение срока брони в формате RFC3339
 
-        "status_code": "string", // Статус обработки запроса ("OK", "ERR")
-        "status_text": "string"  // Сообщение клиенту от аптеки
+        "status_code": "string", // Статус обработки запроса ("OK", "REPEAT")
+        "status_text": "string", // Сообщение клиенту от аптеки
+        "id_order":    "string"  // Номер брони в аптеке (в случае успешного бронирования)
     },
     "data": [{
         "id": "string", // Идентификатор товара
         "quant": 0.0,   // Количество (float)
         "price": 0.0    // Цена (float)
     }]
-
 }
 ```
 
-В случае, если поле "status_code" содержит "ERR", клиент может сделать повторный запрос в следующем формате:
+В случае, если поле "status_code" содержит "REPEAT", клиент может сделать повторный запрос, обязательно указав при этом идентификатор запроса, полученный ранее, в следующем формате:
 ```json
 {
     "meta": {
-        "id": "string",       // Идентификатор запроса ((!)полученный в предыдущем запросе(!))
-        "id_shop": "string",  // Идентификатор торговой точки
-        "id_lang": "string",  // Идентификатор языка ("ru", "ua")
+        "id":      "string", // Идентификатор запроса
+        "id_shop": "string", // Идентификатор торговой точки
+        "id_lang": "string", // Идентификатор языка ("ru", "ua")
 
-        "client_name": "string",   // Имя
-        "client_phone": "string",  // Телефон
-        "client_email": "string",  // Эл. почта
-        "client_expiry": "string", // Время истечение срока брони в формате RFC822
+        "client_name":   "string", // Имя
+        "client_phone":  "string", // Телефон
+        "client_email":  "string", // Эл. почта
+        "client_expiry": "string"  // Время истечение срока брони в формате RFC3339
     },
     "data": [{
         "id": "string", // Идентификатор товара
         "quant": 0.0,   // Количество (float)
         "price": 0.0    // Цена (float)
     }]
-
 }
 ```
 

@@ -81,7 +81,7 @@ curl -X POST -T "order.json" http://{addr}/booking/cli/request_box
         "client_email":  "string", // Эл. почта
         "client_expiry": "string", // Время истечение срока брони в формате RFC3339
 
-        "status_code": "string", // Статус обработки запроса ("OK", "REPEAT")
+        "status_code": "string", // Статус обработки запроса ("ACCEPT", "REPEAT")
         "status_text": "string", // Сообщение клиенту от аптеки
         "id_order":    "string"  // Номер брони в аптеке (в случае успешного бронирования)
     },

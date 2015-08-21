@@ -24,17 +24,17 @@
   ```
 
 4. Запросы от клиентов будут приходить в следующем формате:
-```json
+```
 {
     "meta": {
         "id":      "string", // Идентификатор запроса
         "id_shop": "string", // Идентификатор торговой точки
         "id_lang": "string", // Идентификатор языка ("ru", "ua")
 
-        "client_name":   "string", // Имя
-        "client_phone":  "string", // Телефон
-        "client_email":  "string", // Эл. почта
-        "client_expiry": "string"  // Время истечение срока брони в формате RFC3339
+        "cli_name":   "string", // Имя
+        "cli_phone":  "string", // Телефон
+        "cli_email":  "string", // Эл. почта
+        "cli_expiry": "string"  // Время истечение срока брони в формате ISO 8601 02-01-2006 15:04
     },
     "data": [{
         "id": "string", // Идентификатор товара
@@ -56,7 +56,7 @@ POST http://{addr}/booking/apt/register
 ```
 
 Сообщение отправляется в следующем формате:
-```json
+```
 {
     "name": "string", // Название торговой точки
     "head": "string", // Название торговой сети (юр. лица)
@@ -65,6 +65,7 @@ POST http://{addr}/booking/apt/register
 ```
 
 Так же, при отправке обязательно указывается параметр заголовка *X-Morion-Skynet-Key*.
+
 Значение параметра *X-Morion-Skynet-Key*:
 * Устанавливается при подписании договора, уточняйте у вашего менеджера
 
@@ -74,32 +75,26 @@ curl -X POST -T "data.json" -H "X-Morion-Skynet-Key: xxxxxxxx" http://{addr}/boo
 ```
 
 В случае успеха, будет получено имя канала для подключения к [NSQ], в следующем формате:
-```json
+```
 {
     "topic_name": "string" // Имя канала для прослушивания
 }
 ```
 
 Возможны следующие коды состояния:
-* Канал выдан:
-```
-202
-```
-* Данной аптеки нет в базе данных:
-```
-204
-```
+* `202` - канал выдан
+* `204` - данной аптеки нет в базе данных
 
-### `/i_am_alive`
+### `/alive`
 Сообщение сервису о готовности принимать сообщения.
 ```
-POST http://{addr}/booking/apt/i_am_alive
+POST http://{addr}/booking/apt/alive
 ```
 
 В период времени N, торговой точкой отправляется данная команда, которая сообщает серверу о готовности принимать запросы от клиентов.
 
 Запрос выполняется в следующем формате:
-```json
+```
 {
     "topic_name": "string" // Имя канала, который выдан сервисом при регистрации
 }
@@ -107,7 +102,7 @@ POST http://{addr}/booking/apt/i_am_alive
 
 Пример команды отправки файла с данными *data.json* при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "data.json" http://{addr}/booking/apt/i_am_alive
+curl -X POST -T "data.json" http://{addr}/booking/apt/alive
 ```
 
 Ответ будет получен всегда, в следующем формате:
@@ -115,28 +110,28 @@ curl -X POST -T "data.json" http://{addr}/booking/apt/i_am_alive
 202
 ```
 
-### `/responce_box`
+### `/responce`
 Отправка сервису данных о бронировании.
 ```
-POST http://{addr}/booking/apt/responce_box
+POST http://{addr}/booking/apt/responce
 ```
 
 Отправка выполняется в следующем формате:
-```json
+```
 {
     "meta": {
         "id":      "string", // Идентификатор запроса
         "id_shop": "string", // Идентификатор торговой точки
         "id_lang": "string", // Идентификатор языка ("ru", "ua")
 
-        "client_name":   "string", // Имя
-        "client_phone":  "string", // Телефон
-        "client_email":  "string", // Эл. почта
-        "client_expiry": "string", // Время истечение срока брони в формате RFC3339
+        "cli_name":   "string", // Имя
+        "cli_phone":  "string", // Телефон
+        "cli_email":  "string", // Эл. почта
+        "cli_expiry": "string", // Время истечение срока брони в формате ISO 8601 02-01-2006 15:04
 
-        "status_code": "string", // Статус обработки запроса ("ACCEPT", "REPEAT")
-        "status_text": "string", // Сообщение клиенту от аптеки
-        "id_order":    "string"  // Номер брони в аптеке (в случае успешного бронирования)
+        "apt_status_code": "string", // Статус обработки запроса ("ACCEPT", "REPEAT")
+        "apt_status_text": "string", // Сообщение клиенту от аптеки
+        "apt_num_order":   "string"  // Номер брони в аптеке (в случае успешного бронирования)
     },
     "data": [{
         "id": "string", // Идентификатор товара
@@ -157,18 +152,12 @@ POST http://{addr}/booking/apt/responce_box
 
 Пример команды отправки файла с данными *responce.json* при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "responce.json" http://{addr}/booking/apt/responce_box
+curl -X POST -T "responce.json" http://{addr}/booking/apt/responce
 ```
 
 Возможны следующие коды состояния при отправке данных на сервис:
-* Данные успешно приняты и переданы клиенту:
-```
-202
-```
-* Клиент прервал соединение, либо аптека превысила время ожидания ответа:
-```
-408
-```
+* `202` - данные успешно приняты и переданы клиенту
+* `408` - клиент прервал соединение, либо аптека превысила время ожидания ответа
 
 ### `/unregister`
 Извещения сервиса о штатном прекращении работы торговой точки.
@@ -177,7 +166,7 @@ POST http://{addr}/booking/apt/unregister
 ```
 
 Запрос выполняется в следующем формате:
-```json
+```
 {
     "topic_name": "string" // Имя канала, который выдан сервисом при регистрации
 }

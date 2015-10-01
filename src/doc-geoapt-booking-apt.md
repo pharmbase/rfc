@@ -2,7 +2,7 @@
 *Этот файл поддерживается в формате [Markdown]*
 
 ## Соглашения
-1. Протокол передачи данных [HTTP] и [HTTPS]
+1. Протокол передачи данных [HTTP] и [TCP]
 
 2. Формат приема-передачи данных [JSON] созданный в кодировке [UTF-8] без [BOM].
 
@@ -16,7 +16,7 @@
 ## Подключение
 1. Для получения данных, торговая точка подключается к очереди сообщений. В конкретном случае - [NSQ]
 
-2. Протокол получения данных с [NSQ] - [HTTPS]
+2. Протокол получения данных с [NSQ] - [TLS]
 
 3. После успешного прохождения регистрации, торговая точка получает собственный канал для подключения, следующего формата:
   ```
@@ -34,11 +34,12 @@
         "id":      "string", // Идентификатор запроса
         "id_shop": "string", // Идентификатор торговой точки
         "id_lang": "string", // Идентификатор языка ("ru", "ua")
+        "id_user": "string", // Идентификатор пользователя
 
-        "cli_name":   "string", // Имя
-        "cli_phone":  "string", // Телефон
-        "cli_email":  "string", // Эл. почта
-        "cli_expiry": "string"  // Время истечение срока брони в формате ISO 8601 02-01-2006 15:04
+        "user_name":   "string", // Имя
+        "user_phone":  "string", // Телефон
+        "user_email":  "string", // Эл. почта
+        "user_expiry": "string"  // Время истечение срока брони в формате ISO 8601 02-01-2006 15:04
     },
     "data": [{
         "id": "string", // Идентификатор товара
@@ -54,11 +55,12 @@
         "id":      "hasdh1hkasdk123kasdaks",
         "id_shop": "500111",
         "id_lang": "ru",
+        "id_user": "563881",
 
-        "cli_name":   "Иван Иванович Иванов",
-        "cli_phone":  "+380631234567",
-        "cli_email":  "test@testmail.com",
-        "cli_expiry": "31-09-2015 19:45"
+        "user_name":   "Иван Иванович Иванов",
+        "user_phone":  "+380631234567",
+        "user_email":  "test@testmail.com",
+        "user_expiry": "31-09-2015 19:45"
     },
     "data": [{
         "id": "56548",
@@ -90,11 +92,9 @@ POST http://{addr}/booking/apt/register
 Сообщение отправляется в следующем формате:
 ```
 {
-  "meta": {
-    "name": "string", // Название торговой точки
-    "head": "string", // Название торговой сети (юр. лица)
-    "addr": "string"  // Адрес торговой точки
-  }
+  "name": "string", // Название торговой точки
+  "head": "string", // Название торговой сети (юр. лица)
+  "addr": "string"  // Адрес торговой точки
 }
 ```
 
@@ -111,7 +111,7 @@ curl -X POST -T "data.json" -H "X-Morion-Skynet-Key: xxxxxxxx" http://{addr}/boo
 В случае успеха, будет получено имя канала для подключения к [NSQ], в следующем формате:
 ```
 {
-    "topic_name": "string" // Имя канала для прослушивания
+    "topic": "string" // Имя канала для прослушивания
 }
 ```
 
@@ -130,7 +130,7 @@ POST http://{addr}/booking/apt/alive
 Запрос выполняется в следующем формате:
 ```
 {
-    "topic_name": "string" // Имя канала, который выдан сервисом при регистрации
+    "topic": "string" // Имя канала, который выдан сервисом при регистрации
 }
 ```
 
@@ -144,10 +144,10 @@ curl -X POST -T "data.json" http://{addr}/booking/apt/alive
 202
 ```
 
-### `/responce`
+### `/response`
 Отправка сервису данных о бронировании.
 ```
-POST http://{addr}/booking/apt/responce
+POST http://{addr}/booking/apt/response
 ```
 
 Отправка выполняется в следующем формате:
@@ -157,11 +157,12 @@ POST http://{addr}/booking/apt/responce
         "id":      "string", // Идентификатор запроса
         "id_shop": "string", // Идентификатор торговой точки
         "id_lang": "string", // Идентификатор языка ("ru", "ua")
+        "id_user": "string", // Идентификатор пользователя
 
-        "cli_name":   "string", // Имя
-        "cli_phone":  "string", // Телефон
-        "cli_email":  "string", // Эл. почта
-        "cli_expiry": "string", // Время истечение срока брони в формате ISO 8601 02-01-2006 15:04
+        "user_name":   "string", // Имя
+        "user_phone":  "string", // Телефон
+        "user_email":  "string", // Эл. почта
+        "user_expiry": "string", // Время истечение срока брони в формате ISO 8601 02-01-2006 15:04
 
         "apt_status_code": "string", // Статус обработки запроса ("ACCEPT", "REPEAT")
         "apt_status_text": "string", // Сообщение клиенту от аптеки
@@ -181,11 +182,12 @@ POST http://{addr}/booking/apt/responce
         "id":      "hasdh1hkasdk123kasdaks",
         "id_shop": "500111",
         "id_lang": "ru",
+        "id_user": "563881",
 
-        "cli_name":   "Иван Иванович Иванов",
-        "cli_phone":  "+380631234567",
-        "cli_email":  "test@testmail.com",
-        "cli_expiry": "31-09-2015 19:45",
+        "user_name":   "Иван Иванович Иванов",
+        "user_phone":  "+380631234567",
+        "user_email":  "test@testmail.com",
+        "user_expiry": "31-09-2015 19:45",
 
         "apt_status_code": "ACCEPT",
         "apt_status_text": "Спасибо за покупку!",
@@ -212,9 +214,9 @@ POST http://{addr}/booking/apt/responce
 
 Во всех вышеописанных случаях отправляется *полный набор данных*, **с внесенными в них изменениями и соответствующим статус кодом**.
 
-Пример команды отправки файла с данными *responce.json* при помощи служебной программы [cURL]:
+Пример команды отправки файла с данными *response.json* при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "responce.json" http://{addr}/booking/apt/responce
+curl -X POST -T "response.json" http://{addr}/booking/apt/response
 ```
 
 Возможны следующие коды состояния при отправке данных на сервис:
@@ -230,7 +232,7 @@ POST http://{addr}/booking/apt/unregister
 Запрос выполняется в следующем формате:
 ```
 {
-    "topic_name": "string" // Имя канала, который выдан сервисом при регистрации
+    "topic": "string" // Имя канала, который выдан сервисом при регистрации
 }
 ```
 
@@ -249,6 +251,7 @@ curl -X POST -T "data.json" http://{addr}/booking/apt/unregister
 [UTF-8]:https://ru.wikipedia.org/w/index.php?title=UTF-8
 [BOM]:https://ru.wikipedia.org/w/index.php?oldid=70741439
 [HTTP]:https://ru.wikipedia.org/wiki/HTTP
-[HTTPS]:https://ru.wikipedia.org/wiki/HTTPS
+[TCP]:https://ru.wikipedia.org/wiki/TCP
+[TLS]:https://ru.wikipedia.org/wiki/TLS
 [cURL]:https://ru.wikipedia.org/wiki/CURL
 [NSQ]:http://nsq.io/

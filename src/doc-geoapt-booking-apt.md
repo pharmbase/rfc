@@ -36,10 +36,7 @@
         "id_lang": "string", // Идентификатор языка ("ru", "ua")
         "id_user": "string", // Идентификатор пользователя
 
-        "user_name":   "string", // Имя
-        "user_phone":  "string", // Телефон
-        "user_email":  "string", // Эл. почта
-        "user_expiry": "string"  // Время истечение срока брони в формате ISO 8601 02-01-2006 15:04
+        "user_phone":  "string" // Телефон
     },
     "data": [{
         "id": "string", // Идентификатор товара
@@ -57,10 +54,7 @@
         "id_lang": "ru",
         "id_user": "563881",
 
-        "user_name":   "Иван Иванович Иванов",
-        "user_phone":  "+380631234567",
-        "user_email":  "test@testmail.com",
-        "user_expiry": "31-09-2015 19:45"
+        "user_phone":  "+380631234567"
     },
     "data": [{
         "id": "56548",
@@ -159,10 +153,7 @@ POST http://{addr}/booking/apt/response
         "id_lang": "string", // Идентификатор языка ("ru", "ua")
         "id_user": "string", // Идентификатор пользователя
 
-        "user_name":   "string", // Имя
         "user_phone":  "string", // Телефон
-        "user_email":  "string", // Эл. почта
-        "user_expiry": "string", // Время истечение срока брони в формате ISO 8601 02-01-2006 15:04
 
         "apt_status_code": "string", // Статус обработки запроса ("ACCEPT", "REPEAT")
         "apt_status_text": "string", // Сообщение клиенту от аптеки
@@ -184,10 +175,7 @@ POST http://{addr}/booking/apt/response
         "id_lang": "ru",
         "id_user": "563881",
 
-        "user_name":   "Иван Иванович Иванов",
         "user_phone":  "+380631234567",
-        "user_email":  "test@testmail.com",
-        "user_expiry": "31-09-2015 19:45",
 
         "apt_status_code": "ACCEPT",
         "apt_status_text": "Спасибо за покупку!",

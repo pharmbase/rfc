@@ -44,11 +44,9 @@ curl -X POST -T "order.json" http://{addr}/booking/cli/request
     "meta": {
         "id_shop": "string", // Идентификатор торговой точки
         "id_lang": "string", // Идентификатор языка ("ru", "ua")
+        "id_user": "string", // Идентификатор пользователя (в случае наличия)
 
-        "cli_name":   "string", // Имя
-        "cli_phone":  "string", // Телефон
-        "cli_email":  "string", // Эл. почта
-        "cli_expiry": "string"  // Время истечение срока брони в формате ISO 8601 02-01-2006 15:04
+        "user_phone":  "string" // Телефон
     },
     "data": [{
         "id": "string", // Идентификатор товара
@@ -64,11 +62,9 @@ curl -X POST -T "order.json" http://{addr}/booking/cli/request
     "meta": {
         "id_shop": "500111",
         "id_lang": "ru",
+        "id_user": "563881",
 
-        "cli_name":   "Иван Иванович Иванов",
-        "cli_phone":  "+380631234567",
-        "cli_email":  "test@testmail.com",
-        "cli_expiry": "31-09-2015 19:45"
+        "user_phone":  "+380631234567"
     },
     "data": [{
         "id": "56548",
@@ -89,11 +85,9 @@ curl -X POST -T "order.json" http://{addr}/booking/cli/request
         "id":      "string", // Идентификатор запроса
         "id_shop": "string", // Идентификатор торговой точки
         "id_lang": "string", // Идентификатор языка ("ru", "ua")
+        "id_user": "string", // Идентификатор пользователя
 
-        "cli_name":   "string", // Имя
-        "cli_phone":  "string", // Телефон
-        "cli_email":  "string", // Эл. почта
-        "cli_expiry": "string", // Время истечение срока брони в формате ISO 8601 02-01-2006 15:04
+        "user_phone":  "string", // Телефон
 
         "apt_status_code": "string", // Статус обработки запроса ("ACCEPT", "REPEAT")
         "apt_status_text": "string", // Сообщение клиенту от аптеки
@@ -114,11 +108,9 @@ curl -X POST -T "order.json" http://{addr}/booking/cli/request
         "id":      "hasdh1hkasdk123kasdaks",
         "id_shop": "500111",
         "id_lang": "ru",
+        "id_user": "563881",
 
-        "cli_name":   "Иван Иванович Иванов",
-        "cli_phone":  "+380631234567",
-        "cli_email":  "test@testmail.com",
-        "cli_expiry": "31-09-2015 19:45",
+        "user_phone":  "+380631234567",
 
         "apt_status_code": "ACCEPT",
         "apt_status_text": "Спасибо за покупку!",
@@ -143,11 +135,9 @@ curl -X POST -T "order.json" http://{addr}/booking/cli/request
         "id":      "string", // Идентификатор запроса
         "id_shop": "string", // Идентификатор торговой точки
         "id_lang": "string", // Идентификатор языка ("ru", "ua")
+        "id_user": "string", // Идентификатор пользователя (в случае наличия)
 
-        "cli_name":   "string", // Имя
-        "cli_phone":  "string", // Телефон
-        "cli_email":  "string", // Эл. почта
-        "cli_expiry": "string"  // Время истечение срока брони в формате ISO 8601 02-01-2006 15:04
+        "user_phone":  "string" // Телефон
     },
     "data": [{
         "id": "string", // Идентификатор товара
@@ -164,11 +154,9 @@ curl -X POST -T "order.json" http://{addr}/booking/cli/request
         "id":      "hasdh1hkasdk123kasdaks",
         "id_shop": "500111",
         "id_lang": "ru",
+        "id_user": "563881",
 
-        "cli_name":   "Иван Иванович Иванов",
-        "cli_phone":  "+380631234567",
-        "cli_email":  "test@testmail.com",
-        "cli_expiry": "31-09-2015 19:45"
+        "user_phone":  "+380631234567"
     },
     "data": [{
         "id": "56548",

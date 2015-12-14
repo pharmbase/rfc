@@ -13,12 +13,12 @@
 ### `/check_user`
 Запрос на проверку пользователя. В случае, если пользователь не проверен, на его номер телефона будет отправлен 4х-значный код для прохождения проверки.
 ```
-POST http://{addr}/check_user
+POST http://{addr}/check_phone
 ```
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "user_phone.json" http://{addr}/check_user
+curl -i -X POST -H "Content-Type: application/json" -d '{"phone":"380632224455"}' http://{addr}/check_phone
 ```
 
 Сообщение отправляется в следующем формате:
@@ -75,7 +75,7 @@ POST http://{addr}/check_code
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "user_code.json" http://{addr}/check_code
+curl -i -X POST -H "Content-Type: application/json" -d '{"id":"3282117810", "code":"3854"}' http://{addr}/check_code
 ```
 
 Запрос происходит в следующем формате:
@@ -106,7 +106,7 @@ POST http://{addr}/get_user
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "user_info.json" http://{addr}/get_user
+curl -i -X POST -H "Content-Type: application/json" -d '{"id":"3282117810"}' http://{addr}/get_user
 ```
 
 Сообщение отправляется в следующем формате:
@@ -120,7 +120,8 @@ curl -X POST -T "user_info.json" http://{addr}/get_user
 ```
 {
   "id":    "string", // Идентификатор пользователя
-  "phone": "string"  // Телефон пользователя в международном формате
+  "phone": "string", // Телефон пользователя в международном формате
+  "cert":  "string"  // Статус пользователя
 }
 ```
 
@@ -128,7 +129,8 @@ curl -X POST -T "user_info.json" http://{addr}/get_user
 ```
 {
   "id":    "654886", 
-  "phone": "380683335566"
+  "phone": "380683335566",
+  "cert":  "true"
 }
 ```
 

@@ -44,9 +44,7 @@ curl -X POST -T "order.json" http://{addr}/booking/cli/request
     "meta": {
         "id_shop": "string", // Идентификатор торговой точки
         "id_lang": "string", // Идентификатор языка ("ru", "ua")
-        "id_user": "string", // Идентификатор пользователя (в случае наличия)
-
-        "user_phone":  "string" // Телефон
+        "id_user": "string"  // Идентификатор пользователя
     },
     "data": [{
         "id": "string", // Идентификатор товара
@@ -62,9 +60,7 @@ curl -X POST -T "order.json" http://{addr}/booking/cli/request
     "meta": {
         "id_shop": "500111",
         "id_lang": "ru",
-        "id_user": "563881",
-
-        "user_phone":  "+380631234567"
+        "id_user": "563881"
     },
     "data": [{
         "id": "56548",
@@ -87,8 +83,6 @@ curl -X POST -T "order.json" http://{addr}/booking/cli/request
         "id_lang": "string", // Идентификатор языка ("ru", "ua")
         "id_user": "string", // Идентификатор пользователя
 
-        "user_phone":  "string", // Телефон
-
         "apt_status_code": "string", // Статус обработки запроса ("ACCEPT", "REPEAT")
         "apt_status_text": "string", // Сообщение клиенту от аптеки
         "apt_num_order":   "string"  // Номер брони в аптеке (в случае успешного бронирования)
@@ -109,8 +103,6 @@ curl -X POST -T "order.json" http://{addr}/booking/cli/request
         "id_shop": "500111",
         "id_lang": "ru",
         "id_user": "563881",
-
-        "user_phone":  "+380631234567",
 
         "apt_status_code": "ACCEPT",
         "apt_status_text": "Спасибо за покупку!",
@@ -135,9 +127,7 @@ curl -X POST -T "order.json" http://{addr}/booking/cli/request
         "id":      "string", // Идентификатор запроса
         "id_shop": "string", // Идентификатор торговой точки
         "id_lang": "string", // Идентификатор языка ("ru", "ua")
-        "id_user": "string", // Идентификатор пользователя (в случае наличия)
-
-        "user_phone":  "string" // Телефон
+        "id_user": "string"  // Идентификатор пользователя (в случае наличия)
     },
     "data": [{
         "id": "string", // Идентификатор товара
@@ -154,9 +144,7 @@ curl -X POST -T "order.json" http://{addr}/booking/cli/request
         "id":      "hasdh1hkasdk123kasdaks",
         "id_shop": "500111",
         "id_lang": "ru",
-        "id_user": "563881",
-
-        "user_phone":  "+380631234567"
+        "id_user": "563881"
     },
     "data": [{
         "id": "56548",

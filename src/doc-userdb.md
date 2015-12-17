@@ -10,15 +10,15 @@
 
 ## Методы
 
-### `/check_user`
+### `/get_id_by_phone`
 Запрос на проверку аутентификации пользователя.
 ```
-POST http://{addr}/check_user
+POST http://{addr}/get_id_by_phone
 ```
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -i -X POST -H "Content-Type: application/json" -d '{"phone":"380632224455"}' http://{addr}/check_user
+curl -i -X POST -H "Content-Type: application/json" -d '{"phone":"380632224455"}' http://{addr}/get_id_by_phone
 ```
 
 Сообщение отправляется в следующем формате:
@@ -122,15 +122,15 @@ curl -i -X POST -H "Content-Type: application/json" -d '{"phone":"380632223344"}
 }
 ```
 
-### `/get_user`
+### `/get_user_info`
 Запрос на получение данных о пользователе.
 ```
-POST http://{addr}/get_user
+POST http://{addr}/get_user_info
 ```
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -i -X POST -H "Content-Type: application/json" -d '{"id":"3282117810"}' http://{addr}/get_user
+curl -i -X POST -H "Content-Type: application/json" -d '{"id":"3282117810"}' http://{addr}/get_user_info
 ```
 
 Сообщение отправляется в следующем формате:
@@ -160,9 +160,9 @@ curl -i -X POST -H "Content-Type: application/json" -d '{"id":"3282117810"}' htt
 
 Возможны следующие коды состояния при отправке данных на сервис:
 * `200` - запрос успешно обработан
-* `500` - внутренняя ошибка сервера
+* `404` - пользователь не найден
 
-В случае ошибки 500, в теле ответа будет передана структура следующего формата:
+В случае ошибки 404, в теле ответа будет передана структура следующего формата:
 ```
 {
   "code": "string", // Код ошибки

@@ -11,14 +11,14 @@
 ## Методы
 
 ### `/get_id_by_phone`
-Запрос на проверку аутентификации пользователя.
+Запрос на проверку наличия идентификатора пользователя по номеру телефона.
 ```
 POST http://{addr}/get_id_by_phone
 ```
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -i -X POST -H "Content-Type: application/json" -d '{"phone":"380632224455"}' http://{addr}/get_id_by_phone
+curl -v -X POST -H "Content-Type: application/json" -d '{"phone":"380632224455"}' http://{addr}/get_id_by_phone
 ```
 
 Сообщение отправляется в следующем формате:
@@ -51,7 +51,7 @@ curl -i -X POST -H "Content-Type: application/json" -d '{"phone":"380632224455"}
 
 Возможны следующие коды состояния при отправке данных на сервис:
 * `200` - данные успешно обработаны, отправлен ответ
-* `404` - пользователь является непроверенным
+* `404` - пользователь является непроверенным, либо не существует
 
 В случае ошибки 404, в теле ответа будет передана структура следующего формата:
 ```
@@ -69,7 +69,7 @@ POST http://{addr}/check_code
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -i -X POST -H "Content-Type: application/json" -d '{"phone":"380632223344", "code":"3854"}' http://{addr}/check_code
+curl -v -X POST -H "Content-Type: application/json" -d '{"phone":"380632223344", "code":"3854"}' http://{addr}/check_code
 ```
 
 Запрос происходит в следующем формате:
@@ -82,7 +82,7 @@ curl -i -X POST -H "Content-Type: application/json" -d '{"phone":"380632223344",
 
 Возможны следующие коды состояния при отправке данных на сервис:
 * `200` - смс код принят, пользователь допущен к бронированию
-* `500` - код не верен
+* `500` - код не принят
 
 В случае ошибки 500, в теле ответа будет передана структура следующего формата:
 ```
@@ -93,14 +93,14 @@ curl -i -X POST -H "Content-Type: application/json" -d '{"phone":"380632223344",
 ```
 
 ### `/send_code`
-Запрос на отправку смс кода для пользователя.
+Запрос на отправку смс кода для пользователя. Код имеет срок жизни в течении 5-ти минут, после чего уничтожается, и для прохождения проверки, код нужно будет высылать повторно.
 ```
 POST http://{addr}/send_code
 ```
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -i -X POST -H "Content-Type: application/json" -d '{"phone":"380632223344"}' http://{addr}/send_code
+curl -v -X POST -H "Content-Type: application/json" -d '{"phone":"380632223344"}' http://{addr}/send_code
 ```
 
 Запрос происходит в следующем формате:
@@ -122,15 +122,15 @@ curl -i -X POST -H "Content-Type: application/json" -d '{"phone":"380632223344"}
 }
 ```
 
-### `/get_user_info`
+### `/get_user`
 Запрос на получение данных о пользователе.
 ```
-POST http://{addr}/get_user_info
+POST http://{addr}/get_user
 ```
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -i -X POST -H "Content-Type: application/json" -d '{"id":"3282117810"}' http://{addr}/get_user_info
+curl -v -X POST -H "Content-Type: application/json" -d '{"id":"3282117810"}' http://{addr}/get_user
 ```
 
 Сообщение отправляется в следующем формате:

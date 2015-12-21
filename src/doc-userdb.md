@@ -145,7 +145,7 @@ curl -v -X POST -H "Content-Type: application/json" -d '{"id":"3282117810"}' htt
 {
   "id":    "string", // Идентификатор пользователя
   "phone": "string", // Телефон пользователя в международном формате
-  "cert":  "string"  // Статус аутентификации пользователя
+  "cert":  bool    // Статус аутентификации пользователя
 }
 ```
 
@@ -154,7 +154,7 @@ curl -v -X POST -H "Content-Type: application/json" -d '{"id":"3282117810"}' htt
 {
   "id":    "654886", 
   "phone": "380683335566",
-  "cert":  "true"
+  "cert":  true
 }
 ```
 

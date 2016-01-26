@@ -8,27 +8,29 @@
 В случае успешного выполнения запроса будет возвращен массив предложений. Расклад товаров по точкам осуществляется всегда на стороне сервера.
 
 ```
-curl -k -s -X POST \
-	http://api.geoapteka.com.ua/reset-cart \
+curl -v -X POST \
+	http://{domain}/reset-cart \
 	-H 'Content-Type: application/json; charset=utf-8' \
 	-d '{
-		"coor": {
-			"lat":0.0,
-			"lon":0.0
-		},
-		"item": {
-			"id_drug": "",
-			"id_shop": "",
-			"quant": 0.0,
-			"price": 0.0
-		},
-		"cart": [{
-			"id_drug": "",
-			"id_shop": "",
-			"quant": 0.0,
-			"price": 0.0
-		}]
-	}'
+			"coor": {
+				"lat":0.0,
+				"lon":0.0
+			},
+			"item": {
+				"id_drug": "",
+				"id_shop": "",
+				"quant": 0.0,
+				"price": 0.0
+			},
+			"cart": [
+				{
+					"id_drug": "",
+					"id_shop": "",
+					"quant": 0.0,
+					"price": 0.0
+				}
+			]
+		}'
 ```
 
 Ответ, когда все получилось:
@@ -36,12 +38,14 @@ curl -k -s -X POST \
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
 
-[{
-	"id_drug": "",
-	"id_shop": "",
-	"quant": 0.0,
-	"price": 0.0
-}]
+[
+	{
+		"id_drug": "",
+		"id_shop": "",
+		"quant": 0.0,
+		"price": 0.0
+	}
+]
 ```
 
 Ответ, когда что-то пошло не так на сервере:
@@ -60,4 +64,57 @@ Content-Type: application/json; charset=utf-8
 200 OK
 400 Bad Request 
 500 Internal Server Error
+```
+
+## `/group-cart`
+
+```
+curl -v -X POST \
+	http://{domain}/group-cart \
+	-H 'Content-Type: application/json; charset=utf-8' \
+	-d '{
+		"coor": {
+			"lat":0.0,
+			"lon":0.0
+		},
+		"cart": [{
+			"id_drug": "",
+			"id_shop": "",
+			"quant": 0.0,
+			"price": 0.0
+		}]
+	}'
+```
+
+Ответ, когда все получилось:
+```
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+[
+	{
+		"s": [
+			{
+				"i": "2691143",
+				"b": false,
+				"t": 3091,
+				"l": "Optovih.png",
+				"g": [
+					51.492819,
+					31.292319
+				],
+				"d": [
+					{
+						"i": "23601",
+						"p": 4.44,
+						"q": 344,
+						"o": 1,
+						"t": 1453811665,
+						"l": "http://apteka911.com.ua/shop/analgin-tabl-500mg-10-darnitsa-prat-farm-firma-p22"
+					}
+				]
+			}
+		]
+	}
+]
 ```

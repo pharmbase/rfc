@@ -21,12 +21,12 @@
 
 1. Для отправки данных используется Url-адрес следующего формата:
   ```
-  POST http://{addr}/{aspect}/{user}/{action}
+  POST http://{addr}/{user}/{action}
   ```
  
   К примеру:
   ```
-  POST http://{addr}/booking/cli/request
+  POST http://{addr}/cli/request
   ```
   Где `{addr}` - IP-адрес API, который вы можете узнать у вашего менеджера.
 
@@ -40,7 +40,7 @@ POST-метод позволяющий получить информацию п�
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "order.json" http://{addr}/booking/cli/ping
+curl -X POST -T "order.json" http://{addr}/cli/ping
 ```
 Где `order.json` - набор данных JSON-формата.
 
@@ -65,7 +65,7 @@ curl -X POST -T "order.json" http://{addr}/booking/cli/ping
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "order.json" http://{addr}/booking/cli/req_booking
+curl -X POST -T "order.json" http://{addr}/cli/req_booking
 ```
 Где `order.json` - набор данных JSON-формата.
 
@@ -200,7 +200,7 @@ curl -X POST -T "order.json" http://{addr}/booking/cli/req_booking
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "order.json" http://{addr}/booking/cli/req_stock
+curl -X POST -T "order.json" http://{addr}/cli/req_stock
 ```
 Где `order.json` - набор данных JSON-формата.
 
@@ -269,7 +269,7 @@ POST-метод позволяющий получить идентификато
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "order.json" http://{addr}/booking/cli/get_id
+curl -X POST -T "order.json" http://{addr}/cli/get_id
 ```
 Где `order.json` - набор данных JSON-формата.
 

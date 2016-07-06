@@ -68,11 +68,10 @@
 ```
 {
     "meta": {
-        "id_shop":   "string", // Идентификатор торговой точки
-        "id_lang":   "string", // Идентификатор языка ("ru", "ua")
-        "id_user":   "string", // Идентификатор пользователя
-        
-        "test_flag": bool      // Флаг тестового запроса
+        "agent":   "string", // Маркер точки запроса
+        "phone":   "string", // Телефон пользователя 
+        "id_shop": "string", // Идентификатор торговой точки 
+        "test":     bool     // Флаг тестового запроса
     },
     "data": [{
         "id": "string", // Идентификатор товара
@@ -81,15 +80,15 @@
     }]
 }
 ```
+
 Пример запроса от клиента:
 ```
 {
     "meta": {
-        "id_shop": "500111",
-        "id_lang": "ru",
-        "id_user": "563881",
-        
-        "test_flag": false
+        "agent":   "GeoApt",
+        "phone":   "380365552233", 
+        "id_shop": "800600", 
+        "test":    false     
     },
     "data": [{
         "id": "56548",
@@ -98,11 +97,7 @@
     },{
         "id": "84655",
         "quant": 1.0,
-        "price": 256.88
-    },{
-        "id": "1124",
-        "quant": 2.0,
-        "price": 56.08
+        "price": 156.88
     }]
 }
 ```
@@ -111,15 +106,14 @@
 ```
 {
     "meta": {
-        "id_shop": "string", // Идентификатор торговой точки
-        "id_lang": "string", // Идентификатор языка ("ru", "ua")
-        "id_user": "string", // Идентификатор пользователя
-        
-        "test_flag": false,  // Флаг тестового запроса        
+        "agent":   "string", // Идентификатор точки запроса
+        "phone":   "string", // Телефон пользователя 
+        "id_shop": "string", // Идентификатор торговой точки 
+        "test":    bool,     // Флаг тестового запроса      
 
-        "apt_status_code": "string", // Статус обработки запроса ("ACCEPT", "REPEAT")
-        "apt_order_exp":   "string", // Срок истечения брони в аптеке в формате ISO 8601 02-01-2006 15:04 (в случае успешного бронирования)
-        "apt_order_num":   "string"  // Номер брони в аптеке (в случае успешного бронирования)
+        "state":     "string", // Статус обработки запроса ("ACCEPT", "REPEAT")
+        "order_exp": int64,    // Срок истечения брони в аптеке, в формате Unixtime
+        "order_num": "string"  // Номер брони в аптеке (в случае успешного бронирования)
     },
     "data": [{
         "id": "string", // Идентификатор товара
@@ -133,15 +127,14 @@
 ```
 {
     "meta": {
-        "id_shop": "500111",
-        "id_lang": "ru",
-        "id_user": "563881",
-        
-        "test_flag": false,        
+        "agent":   "GeoApt",
+        "phone":   "380365552233", 
+        "id_shop": "800600", 
+        "test":    false,        
 
-        "apt_status_code": "ACCEPT",
-        "apt_order_exp":   "31-09-2015 19:45",
-        "apt_order_num":   "P-001"
+        "state":     "ACCEPT",
+        "order_exp": 11154655,
+        "order_num": "P-001"
     },
     "data": [{
         "id": "56548",
@@ -168,13 +161,13 @@
 ```
 {
     "meta": {
-        "id_shop": "string", // Идентификатор торговой точки
-        "id_lang": "string", // Идентификатор языка ("ru", "ua")
-        "id_user": "string", // Идентификатор пользователя
+        "agent":   "string", // Идентификатор точки запроса
+        "phone":   "string", // Телефон пользователя 
+        "id_shop": "string", // Идентификатор торговой точки 
 
-        "apt_status_code": "string", // Статус обработки запроса ("UPDATE", "CANCEL", "COMPLETE")
-        "apt_order_exp":   "string", // Срок истечения брони в аптеке в формате ISO 8601 02-01-2006 15:04
-        "apt_order_num":   "string"  // Номер брони в аптеке
+        "state":     "string", // Статус обработки запроса ("UPDATE", "CANCEL", "COMPLETE")
+        "order_exp": int64,    // Срок истечения брони в аптеке, в формате Unixtime
+        "order_num": "string"  // Номер брони в аптеке
     },
     "data": [{
         "id": "string", // Идентификатор товара
@@ -188,13 +181,14 @@
 ```
 {
     "meta": {
-        "id_shop": "500111",
-        "id_lang": "ru",
-        "id_user": "563881",
+        "agent":   "GeoApt",
+        "phone":   "380365552233", 
+        "id_shop": "800600", 
+        "test":    false,        
 
-        "apt_status_code": "CANCEL",
-        "apt_order_exp":   "31-09-2015 19:45",
-        "apt_order_num":   "P-001"
+        "state":     "CANCEL",
+        "order_exp": 11154655,
+        "order_num": "P-001"
     },
     "data": [{
         "id": "56548",
@@ -217,7 +211,9 @@
   "code": "string", // Код ответа
   "text": "string"  // Описание ответа
 }
-``` 
+```
+
+### Запрос по остаткам товара в торговой точке
 
 [Markdown]:https://ru.wikipedia.org/wiki/Markdown
 [JSON]:http://json.org/json-ru.html

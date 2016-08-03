@@ -65,11 +65,11 @@ curl -X POST -T "order.json" http://{addr}/cli/ping
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "order.json" http://{addr}/cli/req_booking
+curl -X POST -H "X-Api-Version: 1.0" -T "order.json" http://{addr}/cli/req_booking
 ```
 Где `order.json` - набор данных JSON-формата.
 
-При отправке запроса, указывается следующий параметр:
+При отправке запроса, указывается следующий HTTP параметр:
 * `X-Api-Version` - указывает версию протокола, с которой будет работать API.
 Например: `X-Api-Version: 1.0`
 
@@ -200,11 +200,11 @@ curl -X POST -T "order.json" http://{addr}/cli/req_booking
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "order.json" http://{addr}/cli/req_stock
+curl -X POST -H "X-Api-Version: 1.0" -T "order.json" http://{addr}/cli/req_stock
 ```
 Где `order.json` - набор данных JSON-формата.
 
-При отправке запроса, указывается следующий параметр:
+При отправке запроса, указывается следующий HTTP параметр:
 * `X-Api-Version` - указывает версию протокола, с которой будет работать API.
 Например: `X-Api-Version: 1.0`
 

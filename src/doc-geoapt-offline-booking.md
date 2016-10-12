@@ -194,14 +194,7 @@ curl -X POST -T "order.json" http://{addr}/cli/test_req?key={corp_key}
         "quant": 0.0,        // Количество
         "price": 0.0         // Цена
     }]
-},{     "phone":   "string", // Телефон пользователя 
-        "id_shop": "string", // Идентификатор торговой точки   
-    "data": [{
-        "id": "string",      // Идентификатор товара
-        "quant": 0.0,        // Количество
-        "price": 0.0         // Цена
-    }]
-  }]
+}]
 }
 ```
 

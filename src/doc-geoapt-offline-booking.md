@@ -175,7 +175,7 @@ curl -X POST -T "order.json" http://{addr}/cli/network_req?key={corp_key}
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "order.json" http://{addr}/cli/network_req?key={corp_key}
+curl -X POST -T "order.json" http://{addr}/cli/test_req?key={corp_key}
 ```
 Где: 
 - `order.json` - набор данных JSON-формата.

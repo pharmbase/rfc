@@ -92,9 +92,6 @@ curl -X POST -T "order.json" http://{addr}/cli/order_req
   "gl_state": "string",        // Статус заказа
   "shops": [{
         "id_shop":   "string", // Идентификатор торговой точки 
-        "state":     "string", // Статус подзаказа
-        "order_num": "string", // Идентификатор подзаказа
-        "order_exp": 0,        // Срок истечения брони (в случае успешного бронирования)
     "data": [{
         "id": "string",      // Идентификатор товара
         "quant": 0.0,        // Количество
@@ -112,10 +109,7 @@ curl -X POST -T "order.json" http://{addr}/cli/order_req
   "id_order": "884654",    
   "gl_state": "Updated",       
   "shops": [{
-        "id_shop":   "800600", 
-        "state":     "Updated", 
-        "order_num": "884654", 
-        "order_exp": 14665466,       
+        "id_shop":   "800600",      
     "data": [{
         "id": "45600",
         "quant": 5.0,
@@ -126,9 +120,6 @@ curl -X POST -T "order.json" http://{addr}/cli/order_req
         "price": 153.45
     }]
 },{     "id_shop":   "500800", 
-        "state":     "Accepted", 
-        "order_num": "884654", 
-        "order_exp": 565466665,
     "data": [{
         "id": "400800",
         "quant": 2.0,

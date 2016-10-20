@@ -54,9 +54,9 @@ curl -X POST http://{addr}/cli/network_req?key={corp_key}
    "state":     "string", // Статус обработки запроса
    "order_num": "string", // Номер брони
     "data": [{
-        "id": "string",        // Идентификатор товара
-        "quant": 0.0,          // Количество
-        "price": 0.0           // Цена
+        "id": "string",   // Идентификатор товара
+        "quant": 0.0,     // Количество
+        "price": 0.0      // Цена
     }]
   }
 ] 
@@ -126,9 +126,9 @@ curl -X POST -T "order.json" http://{addr}/cli/network_upd?key={corp_key}
   "order_exp": 0,        // Срок истечения брони в аптеке, в формате Unixtime (в случае успешного бронирования)
   "order_num": "string", // Номер брони в аптеке
     "data": [{
-        "id": "string",    // Идентификатор товара
-        "quant": 0.0,      // Количество
-        "price": 0.0       // Цена
+        "id": "string",  // Идентификатор товара
+        "quant": 0.0,    // Количество
+        "price": 0.0     // Цена
     }]
 }
 ```

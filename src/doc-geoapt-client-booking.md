@@ -32,12 +32,12 @@
 
 ## Методы
 
-### `/order`
+### `/order_req`
 Запрос на обработку нового заказа.
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "order.json" http://{addr}/cli/order
+curl -X POST -T "order.json" http://{addr}/cli/order_req
 ```
 Где:
 - `order.json` - набор данных JSON-формата.

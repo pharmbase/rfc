@@ -43,7 +43,7 @@
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "order.json" -u login:password http://{addr}/cli/test_req
+curl -X POST -T "order.json" -u login:password http://{addr}/cli/test
 ```
 Где: 
 - `order.json` - набор данных JSON-формата.
@@ -106,7 +106,7 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/test_req
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "order.json" -u login:password http://{addr}/cli/get_order
+curl -X POST -T "order.json" -u login:password http://{addr}/cli/pop_order
 ```
 Где: 
 - `order.json` - набор данных JSON-формата.
@@ -290,7 +290,7 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/get_order
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "order.json" -u login:password http://{addr}/cli/get_order
+curl -X POST -T "order.json" -u login:password http://{addr}/cli/upd_order
 ```
 Где: 
 - `order.json` - набор данных JSON-формата.

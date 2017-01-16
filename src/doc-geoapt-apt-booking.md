@@ -101,7 +101,7 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/test_req
 }
 ```
 
-### `/get_order`
+### `/pop_order`
 [HTTP] метод. Запрос на получение всех заказов для сети, которая участвует в бронировании.
 
 Пример команды при помощи служебной программы [cURL]:

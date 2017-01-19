@@ -12,7 +12,7 @@
 
 5. Возможны следующие коды состояния:
   * `200` - запрос выполнен успешно.
-  * `401` - неверный логин или пароль в запросе.
+  * `403` - неверный логин или пароль в запросе.
   * `500` - внутренняя ошибка сервиса.
   В случае получение статуса `500`, в теле ответа будет содержатся `"string"` поле с описанием ошибки.
   
@@ -57,7 +57,7 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/test
   "phone": "string",          // Телефон пользователя 
   "shops": [{
         "id_shop":  "string", // Идентификатор торговой точки
-        "delivery": "string", // Способ доставки товара
+        "shipping": "string", // Способ доставки товара
     "data": [{
         "id": "string",       // Идентификатор товара
         "quant": 0.0,         // Количество
@@ -66,7 +66,7 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/test
   }]
 }
 ```
-Где поле `"delivery"` описывает способ доставки заказа:
+Где поле `"shipping"` описывает способ доставки заказа:
 * `pickup`  - заказ клиент заберет самостоятельно.
 * `deliver` - заказ необходимо доставить клиенту.
 
@@ -80,7 +80,7 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/test
   "phone": "380632670315",
   "shops": [{
         "id_shop": "700555",
-        "delivery": "pickup",
+        "shipping": "pickup",
     "data": [{
         "id": "45600",
         "quant": 5.0,
@@ -91,7 +91,7 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/test
         "price": 153.45
     }]
 },{     "id_shop": "800900",
-        "delivery": "pickup",
+        "shipping": "pickup",
     "data": [{
         "id": "400800",
         "quant": 2.0,
@@ -139,7 +139,7 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/pop_order
 
    "state":     "string", // Статус обработки запроса
    "order_num": "string", // Номер брони
-   "delivery":  "string", // Способ доставки товара
+   "shipping":  "string", // Способ доставки товара
     "data": [{
         "id": "string",   // Идентификатор товара
         "quant": 0.0,     // Количество
@@ -149,7 +149,7 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/pop_order
 ] 
 ```
 
-Где поле `"delivery"` описывает способ доставки заказа:
+Где поле `"shipping"` описывает способ доставки заказа:
 * `pickup`  - заказ клиент заберет самостоятельно.
 * `deliver` - заказ необходимо доставить клиенту.
 
@@ -166,7 +166,7 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/pop_order
 
     "state":     "New",
     "order_num": "000001",
-    "delivery":  "pickup",
+    "shipping":  "pickup",
     "data": [{
         "id": "56548",
         "quant": 2.0,
@@ -183,7 +183,7 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/pop_order
 
     "state":     "New",
     "order_num": "000002",
-    "delivery":  "pickup",
+    "shipping":  "pickup",
     "data": [{
         "id": "75748",
         "quant": 1.0,
@@ -207,7 +207,7 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/pop_order
   "test":      false,    // Флаг тестового запроса
   
   "order_num": "string", // Номер брони
-  "delivery":  "string", // Способ доставки товара
+  "shipping":  "string", // Способ доставки товара
    "data": [{
       "id": "string",    // Идентификатор товара
       "quant": 0.0,      // Количество
@@ -216,7 +216,7 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/pop_order
 }
 ```
 
-Где поле `"delivery"` описывает способ доставки заказа:
+Где поле `"shipping"` описывает способ доставки заказа:
 * `pickup`  - заказ клиент заберет самостоятельно.
 * `deliver` - заказ необходимо доставить клиенту.
 
@@ -232,7 +232,7 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/pop_order
   "test":       false,
   
   "order_num": "866523",
-  "delivery":  "pickup",
+  "shipping":  "pickup",
     "data": [{
         "id": "56548",
         "quant": 2.0,
@@ -255,7 +255,7 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/pop_order
   "state":     "string", // Статус обработки запроса
   "order_exp": 0,        // Срок истечения брони в аптеке, в формате Unixtime (в случае успешного бронирования)
   "order_num": "string", // Номер брони в аптеке
-  "delivery":  "string", // Способ доставки товара
+  "shipping":  "string", // Способ доставки товара
     "data": [{
         "id": "string",  // Идентификатор товара
         "quant": 0.0,    // Количество
@@ -274,7 +274,7 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/pop_order
   "state":     "Confirmed",
   "order_exp": 11154655,
   "order_num": "012345",
-  "delivery":  "pickup",
+  "shipping":  "pickup",
     "data": [{
         "id": "56548",
         "quant": 1.0,
@@ -307,7 +307,7 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/upd_order
   "state":     "string", // Статус обработки запроса
   "order_exp": 0,        // Срок истечения брони в аптеке, в формате Unixtime (в случае успешного бронирования)
   "order_num": "string", // Номер брони в аптеке
-  "delivery":  "string", // Способ доставки товара
+  "shipping":  "string", // Способ доставки товара
     "data": [{
         "id": "string",  // Идентификатор товара
         "quant": 0.0,    // Количество
@@ -316,7 +316,7 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/upd_order
 }
 ```
 
-Где поле `"delivery"` описывает способ доставки заказа:
+Где поле `"shipping"` описывает способ доставки заказа:
 * `pickup`  - заказ клиент заберет самостоятельно.
 * `deliver` - заказ необходимо доставить клиенту.
 
@@ -339,7 +339,7 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/upd_order
   "state":     "Confirmed",
   "order_exp": 11154655,
   "order_num": "012345",
-  "delivery":  "pickup",
+  "shipping":  "pickup",
     "data": [{
         "id": "56548",
         "quant": 1.0,

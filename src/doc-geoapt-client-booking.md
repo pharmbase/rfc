@@ -10,6 +10,7 @@
 
 4. Возможны следующие коды состояния:
   * `200` - запрос выполнен успешно.
+  * `403` - неверный логин или пароль в запросе.
   * `500` - внутренняя ошибка сервиса.
   В случае получение статуса `500`, в теле ответа будет содержатся `"string"` поле с описанием ошибки.
 
@@ -37,25 +38,28 @@
 
 Пример команды при помощи служебной программы [cURL]:
 ```sh
-curl -X POST -T "order.json" http://{addr}/cli/order
+curl -X POST -T "order.json" -u login:password http://{addr}/cli/order
 ```
 Где:
 - `order.json` - набор данных JSON-формата.
-- `{addr}`     - IP-адрес API, который вы можете узнать у вашего менеджера.
+- `{addr}`     - адрес API, который вы можете узнать у вашего менеджера.
+- `login`      - логин HTTP аутентификации.
+- `password`   - пароль HTTP аутентификации.
 
 Первое сообщение отправляется в следующем формате:
 
 **При заказе нескольких товаров в одну и ту же торговую точку - товары группируются.**
 ```
 {
-  "agent": "string",         // Маркер точки запроса (например: "ServiceName")
-  "phone": "string",         // Телефон пользователя
+  "agent": "string",          // Маркер точки запроса (например: "ServiceName")
+  "phone": "string",          // Телефон пользователя
   "shops": [{
-        "id_shop": "string", // Идентификатор торговой точки   
+        "id_shop":  "string", // Идентификатор торговой точки
+        "shipping": "string", // Способ доставки товара
     "data": [{
-        "id": "string",      // Идентификатор товара
-        "quant": 0.0,        // Количество
-        "price": 0.0         // Цена
+        "id": "string",       // Идентификатор товара
+        "quant": 0.0,         // Количество
+        "price": 0.0          // Цена
     }]
   }]
 }
@@ -67,7 +71,8 @@ curl -X POST -T "order.json" http://{addr}/cli/order
   "agent": "CorpName",
   "phone": "380632670315",
   "shops": [{
-        "id_shop": "700555",   
+        "id_shop":  "700555",
+        "shipping": "pickup",
     "data": [{
         "id": "45600",
         "quant": 5.0,
@@ -77,7 +82,8 @@ curl -X POST -T "order.json" http://{addr}/cli/order
         "quant": 1.0,
         "price": 153.45
     }]
-},{     "id_shop": "800900",   
+},{     "id_shop":  "800900",
+        "shipping": "pickup",
     "data": [{
         "id": "400800",
         "quant": 2.0,
@@ -95,8 +101,9 @@ curl -X POST -T "order.json" http://{addr}/cli/order
   "id_order": "string",        // Идентификатор заказа
   "gl_state": "string",        // Статус обработки всего заказа
   "shops": [{
-        "id_shop":   "string", // Идентификатор торговой точки
-        "state":     "string", // Статус обработки заказа
+        "id_shop":  "string",  // Идентификатор торговой точки
+        "shipping": "string",  // Способ доставки товара
+        "state":    "string",  // Статус обработки заказа
         "order_exp": 0,        // Срок истечения заказа в аптеке, в формате Unixtime (в случае успешного бронирования в Online точке)       
     "data": [{
         "id": "string",        // Идентификатор товара
@@ -115,8 +122,9 @@ curl -X POST -T "order.json" http://{addr}/cli/order
   "id_order": "884654",
   "gl_state": "Accepted", 
   "shops": [{
-        "id_shop":   "800600",
-        "state":     "Accepted", 
+        "id_shop":  "800600",
+        "shipping": "pickup",
+        "state":    "Accepted", 
     "data": [{
         "id": "45600",
         "quant": 5.0,
@@ -126,8 +134,9 @@ curl -X POST -T "order.json" http://{addr}/cli/order
         "quant": 1.0,
         "price": 153.45
     }]
-},{     "id_shop":   "500800",
-        "state":     "Confirmed",
+},{     "id_shop":  "500800",
+        "shipping": "pickup",
+        "state":    "Confirmed",
         "order_exp": 12355465,  
     "data": [{
         "id": "400800",
@@ -138,7 +147,11 @@ curl -X POST -T "order.json" http://{addr}/cli/order
 }
 ```
 
-Где поле `gl_state` описывает текущее состояние всего заказа из корзины:
+Где поле `"shipping"` описывает способ доставки заказа:
+* `pickup`  - заказ клиент заберет самостоятельно.
+* `deliver` - заказ необходимо доставить клиенту.
+
+Поле `gl_state` описывает текущее состояние всего заказа из корзины:
 * `Accepted` - заказ принят, и поступил на обработку.
 * `Canceled` - заказ не принят, в случае, если хотя бы один из подзаказов не принят на обработку в АПИ
 
@@ -158,15 +171,17 @@ curl -X POST -T "order.json" http://{addr}/cli/order
   "id_order": "884654",
   "gl_state": "Canceled", 
   "shops": [{
-        "id_shop":   "800600",
-        "state":     "Accepted",
+        "id_shop":  "800600",
+        "shipping": "pickup",
+        "state":    "Accepted",
     "data": [{
         "id": "45600",
         "quant": 5.0,
         "price": 35.0
     }]
-},{     "id_shop":   "500800", 
-        "state":     "Updated",
+},{     "id_shop":  "500800", 
+        "shipping": "pickup",
+        "state":    "Updated",
     "data": [{
         "id": "400800",
         "quant": 2.0,

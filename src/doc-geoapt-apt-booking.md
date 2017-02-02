@@ -55,8 +55,8 @@ curl -X POST -T "order.json" -u login:password http://{addr}/reg-nats
 ```
 [
  {
-   "id_shop":  "string", // Идентификатор торговой точки 
-   "subject": "string"   // Название канала для данного идентификатора торговой точки     
+   "id_shop": "string", // Идентификатор торговой точки 
+   "subject": "string"  // Название канала для данного идентификатора торговой точки     
  }
 ] 
 ```
@@ -207,17 +207,17 @@ curl -X POST -T "order.json" -u login:password http://{addr}/pop-order
 ```
 [
  {
-   "phone":   "string",   // Телефон пользователя 
-   "id_shop": "string",   // Идентификатор торговой точки 
-   "test":    false,      // Флаг тестового запроса      
-
-   "state":     "string", // Статус обработки запроса
-   "order_num": "string", // Номер брони
-   "shipping":  "string", // Способ доставки товара
+   "phone":   "string",  // Телефон пользователя 
+   "id_shop": "string",  // Идентификатор торговой точки 
+   "test":    false,     // Флаг тестового запроса 
+   
+   "id_order": "string", // Номер брони
+   "state":    "string", // Статус обработки запроса
+   "shipping": "string", // Способ доставки товара
     "data": [{
-        "id": "string",   // Идентификатор товара
-        "quant": 0.0,     // Количество
-        "price": 0.0      // Цена
+        "id": "string",  // Идентификатор товара
+        "quant": 0.0,    // Количество
+        "price": 0.0     // Цена
     }]
   }
 ] 
@@ -236,11 +236,11 @@ curl -X POST -T "order.json" -u login:password http://{addr}/pop-order
   {
     "phone":   "380365552233", 
     "id_shop": "800600", 
-    "test":    false,        
-
-    "state":     "New",
-    "order_num": "000001",
-    "shipping":  "pickup",
+    "test":    false,     
+    
+    "id_order": "000001",
+    "state":    "New",
+    "shipping": "pickup",
     "data": [{
         "id": "56548",
         "quant": 2.0,
@@ -253,11 +253,11 @@ curl -X POST -T "order.json" -u login:password http://{addr}/pop-order
  },{
     "phone":   "380367773355", 
     "id_shop": "700100", 
-    "test":    false,        
-
-    "state":     "New",
-    "order_num": "000002",
-    "shipping":  "pickup",
+    "test":    false,    
+    
+    "id_order": "000002",
+    "state":    "New",
+    "shipping": "pickup",
     "data": [{
         "id": "75748",
         "quant": 1.0,
@@ -278,16 +278,16 @@ curl -X POST -T "order.json" -u login:password http://{addr}/pop-order
 Запросы от клиентов будут приходить в следующем формате:
 ```
 {
-  "phone":     "string", // Телефон пользователя 
-  "id_shop":   "string", // Идентификатор торговой точки 
-  "test":      false,    // Флаг тестового запроса
+  "phone":    "string", // Телефон пользователя 
+  "id_shop":  "string", // Идентификатор торговой точки 
+  "test":     false,    // Флаг тестового запроса
   
-  "order_num": "string", // Номер брони
-  "shipping":  "string", // Способ доставки товара
+  "id_order": "string", // Номер брони
+  "shipping": "string", // Способ доставки товара
    "data": [{
-      "id": "string",    // Идентификатор товара
-      "quant": 0.0,      // Количество
-      "price": 0.0       // Цена
+      "id": "string",   // Идентификатор товара
+      "quant": 0.0,     // Количество
+      "price": 0.0      // Цена
    }]
 }
 ```
@@ -303,12 +303,12 @@ curl -X POST -T "order.json" -u login:password http://{addr}/pop-order
 Пример запроса от клиента:
 ```
 {
-  "phone":     "380365552233", 
-  "id_shop":   "800600", 
-  "test":       false,
+  "phone":   "380365552233", 
+  "id_shop": "800600", 
+  "test":    false,
   
-  "order_num": "866523",
-  "shipping":  "pickup",
+  "id_order": "866523",
+  "shipping": "pickup",
     "data": [{
         "id": "56548",
         "quant": 2.0,
@@ -326,11 +326,11 @@ curl -X POST -T "order.json" -u login:password http://{addr}/pop-order
 {
   "phone":   "string",   // Телефон пользователя 
   "id_shop": "string",   // Идентификатор торговой точки 
-  "test":    false,      // Флаг тестового запроса      
-
-  "state":     "string", // Статус обработки запроса
+  "test":    false,      // Флаг тестового запроса
+  
+  "id_order": "string",  // Номер брони в аптеке
+  "state":    "string",  // Статус обработки запроса
   "order_exp": 0,        // Срок истечения брони в аптеке, в формате Unixtime (в случае успешного бронирования)
-  "order_num": "string", // Номер брони в аптеке
   "shipping":  "string", // Способ доставки товара
     "data": [{
         "id": "string",  // Идентификатор товара
@@ -345,11 +345,11 @@ curl -X POST -T "order.json" -u login:password http://{addr}/pop-order
 {
   "phone":   "380365552233", 
   "id_shop": "800600", 
-  "test":    false,        
-
+  "test":    false, 
+  
+  "id_order":  "012345",
   "state":     "Confirmed",
   "order_exp": 11154655,
-  "order_num": "012345",
   "shipping":  "pickup",
     "data": [{
         "id": "56548",
@@ -359,7 +359,7 @@ curl -X POST -T "order.json" -u login:password http://{addr}/pop-order
 }
 ```
 
-Во всех вышеописанных случаях отправляется *полный набор данных*, **с внесенными в них изменениями и соответствующим статусом заказа**.
+В случае несовпадения цены, либо количества товара, отправляется *полный набор данных*, **с внесенными в них изменениями и соответствующим статусом заказа** в качестве ответа на запрос клиенту.
   
 ### `/upd-order`
 [HTTP] метод. Запрос на обновления данных по `заказу` в `конкретной` торговой точке.
@@ -379,11 +379,11 @@ curl -X POST -T "order.json" -u login:password http://{addr}/upd-order
 {
   "phone":   "string",   // Телефон пользователя 
   "id_shop": "string",   // Идентификатор торговой точки 
-  "test":    false,      // Флаг тестового запроса      
-
+  "test":    false,      // Флаг тестового запроса  
+  
+  "id_order":  "string", // Номер брони в аптеке
   "state":     "string", // Статус обработки запроса
   "order_exp": 0,        // Срок истечения брони в аптеке, в формате Unixtime (в случае успешного бронирования)
-  "order_num": "string", // Номер брони в аптеке
   "shipping":  "string", // Способ доставки товара
     "data": [{
         "id": "string",  // Идентификатор товара
@@ -411,11 +411,11 @@ curl -X POST -T "order.json" -u login:password http://{addr}/upd-order
 {
   "phone":   "380365552233", 
   "id_shop": "800600", 
-  "test":    false,        
-
+  "test":    false, 
+  
+  "id_order":  "012345",
   "state":     "Confirmed",
   "order_exp": 11154655,
-  "order_num": "012345",
   "shipping":  "pickup",
     "data": [{
         "id": "56548",

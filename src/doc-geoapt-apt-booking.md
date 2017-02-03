@@ -47,12 +47,12 @@
 
 Пример:
 ```sh
-curl -X POST -T "order.json" -u login:password http://{addr}/reg-nats
+curl -X POST -T "order.json" -u user:password http://{addr}/reg-nats
 ```
 Где: 
 - `order.json` - данные в JSON-формате.
 - `{addr}`     - адрес API.
-- `login`      - логин (`booking` - для участия в бронировании).
+- `user`      - логин (`booking` - для участия в бронировании).
 - `password`   - пароль (ключ облачной авторизации).
 
 Формат тела запроса:
@@ -86,12 +86,12 @@ curl -X POST -T "order.json" -u login:password http://{addr}/reg-nats
 
 Пример:
 ```sh
-curl -X POST -T "order.json" -u login:password http://{addr}/get-id-shop
+curl -X POST -T "order.json" -u user:password http://{addr}/get-id-shop
 ```
 Где: 
 - `order.json` - набор данных JSON-формата.
 - `{addr}`     - адрес API, который вы можете узнать у вашего менеджера.
-- `login`      - логин HTTP аутентификации (`booking` - для участия в бронировании).
+- `user`       - логин HTTP аутентификации (`booking` - для участия в бронировании).
 - `password`   - пароль HTTP аутентификации (ключ облачной авторизации).
 
 Формат тела запроса:
@@ -122,12 +122,12 @@ curl -X POST -T "order.json" -u login:password http://{addr}/get-id-shop
 
 Пример:
 ```sh
-curl -X POST -T "order.json" -u login:password http://{addr}/test-order
+curl -X POST -T "order.json" -u user:password http://{addr}/test-order
 ```
 Где: 
 - `order.json` - набор данных JSON-формата.
 - `{addr}`     - адрес API, который вы можете узнать у вашего менеджера.
-- `login`      - логин HTTP аутентификации (`booking` - для участия в бронировании).
+- `user`       - логин HTTP аутентификации (`booking` - для участия в бронировании).
 - `password`   - пароль HTTP аутентификации (ключ облачной авторизации).
 
 Формат тела тестового запроса:
@@ -185,12 +185,12 @@ curl -X POST -T "order.json" -u login:password http://{addr}/test-order
 
 Пример:
 ```sh
-curl -X POST -T "order.json" -u login:password http://{addr}/pop-order
+curl -X POST -T "order.json" -u user:password http://{addr}/pop-order
 ```
 Где: 
 - `order.json` - набор данных JSON-формата.
 - `{addr}`     - адрес API, который вы можете узнать у вашего менеджера.
-- `login`      - логин HTTP аутентификации (`booking` - для участия в бронировании).
+- `user`       - логин HTTP аутентификации (`booking` - для участия в бронировании).
 - `password`   - пароль HTTP аутентификации (ключ облачной авторизации).
 
 Формат тела запроса:
@@ -373,12 +373,12 @@ curl -X POST -T "order.json" -u login:password http://{addr}/pop-order
 
 Пример:
 ```sh
-curl -X POST -T "order.json" -u login:password http://{addr}/upd-order
+curl -X POST -T "order.json" -u user:password http://{addr}/upd-order
 ```
 Где: 
 - `order.json` - набор данных JSON-формата.
 - `{addr}`     - адрес API, который вы можете узнать у вашего менеджера.
-- `login`      - логин HTTP аутентификации (`booking` - для участия в бронировании).
+- `user`       - логин HTTP аутентификации (`booking` - для участия в бронировании).
 - `password`   - пароль HTTP аутентификации (ключ облачной авторизации).
 
 Формат тела запроса на обновления данных:

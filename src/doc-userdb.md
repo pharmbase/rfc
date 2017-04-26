@@ -2,7 +2,7 @@
 *Этот файл поддерживается в формате [Markdown]*
 
 ## Соглашения
-1. Протокол передачи данных [HTTP]
+1. Протокол передачи данных [HTTPS]
 
 2. Формат приема-передачи данных [JSON] созданный в кодировке [UTF-8] без [BOM].
 
@@ -274,5 +274,5 @@ curl -i -X POST -H "Content-Type: application/json" -d '{"id":"3282117810"}' htt
 [JSON]:http://json.org/json-ru.html
 [UTF-8]:https://ru.wikipedia.org/w/index.php?title=UTF-8
 [BOM]:https://ru.wikipedia.org/w/index.php?oldid=70741439
-[HTTP]:https://ru.wikipedia.org/wiki/HTTP
+[HTTPS]:https://ru.wikipedia.org/wiki/HTTPS
 [cURL]:https://ru.wikipedia.org/wiki/CURL

@@ -214,6 +214,7 @@ curl -X POST -T "order.json" -u user:password http://{addr}/pop-order
 ```
 [
  {
+   "agent":   "string",  // Маркер точки запроса, например "CorpName"
    "phone":   "string",  // Телефон пользователя 
    "id_shop": "string",  // Идентификатор торговой точки 
    "test":    false,     // Флаг тестового запроса 
@@ -241,6 +242,7 @@ curl -X POST -T "order.json" -u user:password http://{addr}/pop-order
 ```
 [
   {
+    "agent":   "CompUA",
     "phone":   "380365552233", 
     "id_shop": "800600", 
     "test":    false,     
@@ -258,6 +260,7 @@ curl -X POST -T "order.json" -u user:password http://{addr}/pop-order
         "price": 156.88
     }]
  },{
+    "agent":   "GeoApt",
     "phone":   "380367773355", 
     "id_shop": "700100", 
     "test":    false,    
@@ -285,6 +288,7 @@ curl -X POST -T "order.json" -u user:password http://{addr}/pop-order
 Формат тела запроса отклиентов:
 ```
 {
+  "agent":    "string", // Маркер точки запроса, например "CorpName"
   "phone":    "string", // Телефон пользователя 
   "id_shop":  "string", // Идентификатор торговой точки 
   "test":     false,    // Флаг тестового запроса
@@ -310,6 +314,7 @@ curl -X POST -T "order.json" -u user:password http://{addr}/pop-order
 Пример тела запроса отклиентов:
 ```
 {
+  "agent":   "GeoApt",
   "phone":   "380365552233", 
   "id_shop": "800600", 
   "test":    false,
@@ -331,6 +336,7 @@ curl -X POST -T "order.json" -u user:password http://{addr}/pop-order
 Формат тела ответа для отклиентов:
 ```
 {
+  "agent":   "string",   // Маркер точки запроса, например "CorpName"
   "phone":   "string",   // Телефон пользователя 
   "id_shop": "string",   // Идентификатор торговой точки 
   "test":    false,      // Флаг тестового запроса
@@ -350,6 +356,7 @@ curl -X POST -T "order.json" -u user:password http://{addr}/pop-order
 Пример тела ответа для отклиентов:
 ```
 {
+  "agent":   "GeoApt",
   "phone":   "380365552233", 
   "id_shop": "800600", 
   "test":    false, 
@@ -384,6 +391,7 @@ curl -X POST -T "order.json" -u user:password http://{addr}/upd-order
 Формат тела запроса на обновления данных:
 ```
 {
+  "agent":   "string",   // Маркер точки запроса, например "CorpName"
   "phone":   "string",   // Телефон пользователя 
   "id_shop": "string",   // Идентификатор торговой точки 
   "test":    false,      // Флаг тестового запроса  
@@ -416,6 +424,7 @@ curl -X POST -T "order.json" -u user:password http://{addr}/upd-order
 Пример тела запроса на обновления данных:
 ```
 {
+  "agent":   "GeoApt",
   "phone":   "380365552233", 
   "id_shop": "800600", 
   "test":    false, 

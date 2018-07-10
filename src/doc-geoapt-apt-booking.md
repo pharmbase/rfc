@@ -114,7 +114,7 @@ curl -X POST -T "order.json" -u user:password http://{addr}/get-id-shop
    "name": "string", // Название торговой точки
    "head": "string", // Название торговой сети (юр. лица)
    "addr": "string", // Адрес торговой точки
-   "id": "string"    // Идентификатор торговой точки
+   "id":   "string"  // Идентификатор торговой точки
  }
 ] 
 ```
@@ -216,17 +216,17 @@ curl -X POST -T "order.json" -u user:password http://{addr}/pop-order
 ```
 [
  {
-   "agent":   "string",      // Маркер точки запроса, например "CorpName"
-   "phone":   "string",      // Телефон пользователя 
-   "id_shop": "string",      // Идентификатор торговой точки
+   "agent":       "string",  // Маркер точки запроса, например "CorpName"
+   "phone":       "string",  // Телефон пользователя 
+   "id_shop":     "string",  // Идентификатор торговой точки
    "ext_id_shop": "string",  // Внешний идентификатор торговой точки (*) 
-   "test":    false,         // Флаг тестового запроса 
+   "test":        false,     // Флаг тестового запроса 
    
    "id_order": "string",     // Номер брони
    "state":    "string",     // Статус обработки запроса
    "shipping": "string",     // Способ доставки товара
     "data": [{
-        "id": "string",      // Идентификатор товара
+        "id":     "string",  // Идентификатор товара
         "ext_id": "string",  // Внешний идентификатор товара (*) 
         "quant": 0.0,        // Количество
         "price": 0.0         // Цена
@@ -247,41 +247,41 @@ curl -X POST -T "order.json" -u user:password http://{addr}/pop-order
 ```
 [
   {
-    "agent":   "CompUA",
-    "phone":   "380365552233", 
-    "id_shop": "800600",
+    "agent":       "CompUA",
+    "phone":       "380365552233", 
+    "id_shop":     "800600",
     "ext_id_shop": "CU0009123", 
-    "test":    false,     
+    "test":        false,     
     
     "id_order": "000001",
     "state":    "New",
     "shipping": "pickup",
     "data": [{
-        "id": "56548",
+        "id":     "56548",
         "ext_id": "xcvf-asdd",
-        "quant": 2.0,
-        "price": 15.40
+        "quant":  2.0,
+        "price":  15.40
     },{
-        "id": "84655",
+        "id":     "84655",
         "ext_id": "asdd-asdd",
-        "quant": 1.0,
-        "price": 156.88
+        "quant":  1.0,
+        "price":  156.88
     }]
  },{
-    "agent":   "GeoApt",
-    "phone":   "380367773355", 
-    "id_shop": "700100",
+    "agent":       "GeoApt",
+    "phone":       "380367773355", 
+    "id_shop":     "700100",
     "ext_id_shop": "CU0009100",  
-    "test":    false,    
+    "test":        false,    
     
     "id_order": "000002",
     "state":    "New",
     "shipping": "pickup",
     "data": [{
-        "id": "75748",
+        "id":     "75748",
         "ext_id": "1554-6654",
-        "quant": 1.0,
-        "price": 25.70
+        "quant":  1.0,
+        "price":  25.70
     }]
   }
 ] 
@@ -298,17 +298,17 @@ curl -X POST -T "order.json" -u user:password http://{addr}/pop-order
 Формат тела запроса отклиентов:
 ```
 {
-  "agent":    "string", // Маркер точки запроса, например "CorpName"
-  "phone":    "string", // Телефон пользователя 
-  "id_shop":  "string", // Идентификатор торговой точки 
-  "test":     false,    // Флаг тестового запроса
+  "agent":    "string",  // Маркер точки запроса, например "CorpName"
+  "phone":    "string",  // Телефон пользователя 
+  "id_shop":  "string",  // Идентификатор торговой точки 
+  "test":     false,     // Флаг тестового запроса
   
-  "id_order": "string", // Номер брони
-  "shipping": "string", // Способ доставки товара
+  "id_order": "string",  // Номер брони
+  "shipping": "string",  // Способ доставки товара
    "data": [{
-      "id": "string",   // Идентификатор товара
-      "quant": 0.0,     // Количество
-      "price": 0.0      // Цена
+      "id":    "string", // Идентификатор товара
+      "quant": 0.0,      // Количество
+      "price": 0.0       // Цена
    }]
 }
 ```
@@ -332,11 +332,11 @@ curl -X POST -T "order.json" -u user:password http://{addr}/pop-order
   "id_order": "866523",
   "shipping": "pickup",
     "data": [{
-        "id": "56548",
+        "id":    "56548",
         "quant": 2.0,
         "price": 15.40
     },{
-        "id": "84655",
+        "id":    "84655",
         "quant": 1.0,
         "price": 156.88
    }]
@@ -346,18 +346,19 @@ curl -X POST -T "order.json" -u user:password http://{addr}/pop-order
 Формат тела ответа для отклиентов:
 ```
 {
-  "agent":   "string",   // Маркер точки запроса, например "CorpName"
-  "phone":   "string",   // Телефон пользователя 
-  "id_shop": "string",   // Идентификатор торговой точки 
-  "test":    false,      // Флаг тестового запроса
+  "agent":   "string",      // Маркер точки запроса, например "CorpName"
+  "phone":   "string",      // Телефон пользователя 
+  "id_shop": "string",      // Идентификатор торговой точки 
+  "test":    false,         // Флаг тестового запроса
   
-  "id_order": "string",  // Номер брони в аптеке
-  "state":    "string",  // Статус обработки запроса
-  "shipping":  "string", // Способ доставки товара
+  "id_order":     "string", // Номер брони в аптеке
+  "ext_id_order": "string", // Внешний номер брони в аптеке (обязательное поле)
+  "state":        "string", // Статус обработки запроса
+  "shipping":     "string", // Способ доставки товара
     "data": [{
-        "id": "string",  // Идентификатор товара
-        "quant": 0.0,    // Количество
-        "price": 0.0     // Цена
+        "id":    "string",  // Идентификатор товара
+        "quant": 0.0,       // Количество
+        "price": 0.0        // Цена
     }]
 }
 ```
@@ -370,11 +371,12 @@ curl -X POST -T "order.json" -u user:password http://{addr}/pop-order
   "id_shop": "800600", 
   "test":    false, 
   
-  "id_order":  "012345",
-  "state":     "Confirmed",
-  "shipping":  "pickup",
+  "id_order":     "012345",
+  "ext_id_order": "IA500455",
+  "state":        "Confirmed",
+  "shipping":     "pickup",
     "data": [{
-        "id": "56548",
+        "id":    "56548",
         "quant": 1.0,
         "price": 35.10
     }]
@@ -399,21 +401,21 @@ curl -X POST -T "order.json" -u user:password http://{addr}/upd-order
 Формат тела запроса на обновления данных:
 ```
 {
-  "agent":   "string",      // Маркер точки запроса, например "CorpName"
-  "phone":   "string",      // Телефон пользователя 
-  "id_shop": "string",      // Идентификатор торговой точки 
+  "agent":       "string",  // Маркер точки запроса, например "CorpName"
+  "phone":       "string",  // Телефон пользователя 
+  "id_shop":     "string",  // Идентификатор торговой точки 
   "ext_id_shop": "string",  // Внешний идентификатор торговой точки (*)
-  "test":    false,         // Флаг тестового запроса  
+  "test":        false,     // Флаг тестового запроса  
   
-  "id_order":  "string",    // Номер брони в аптеке
+  "id_order":     "string", // Номер брони в аптеке
   "ext_id_order": "string", // Внешний номер брони в аптеке (обязательное поле)
-  "state":     "string",    // Статус обработки запроса
-  "shipping":  "string",    // Способ доставки товара
+  "state":        "string", // Статус обработки запроса
+  "shipping":     "string", // Способ доставки товара
     "data": [{
-        "id": "string",     // Идентификатор товара
+        "id":     "string", // Идентификатор товара
         "ext_id": "string", // Внешний идентификатор товара (*)
-        "quant": 0.0,       // Количество
-        "price": 0.0        // Цена
+        "quant":  0.0,      // Количество
+        "price":  0.0       // Цена
     }]
 }
 ```
@@ -435,21 +437,21 @@ curl -X POST -T "order.json" -u user:password http://{addr}/upd-order
 Пример тела запроса на обновления данных:
 ```
 {
-  "agent":   "GeoApt",
-  "phone":   "380365552233", 
-  "id_shop": "800600",
+  "agent":       "GeoApt",
+  "phone":       "380365552233", 
+  "id_shop":     "800600",
   "ext_id_shop": "CU98999", 
-  "test":    false, 
+  "test":        false, 
   
-  "id_order":  "012345",
+  "id_order":     "012345",
   "ext_id_order": "IA546666",
-  "state":     "Confirmed",
-  "shipping":  "pickup",
+  "state":        "Confirmed",
+  "shipping":     "pickup",
     "data": [{
-        "id": "56548",
+        "id":     "56548",
         "ext_id": "8799-8798",
-        "quant": 1.0,
-        "price": 35.10
+        "quant":  1.0,
+        "price":  35.10
     }]
 }
 ```

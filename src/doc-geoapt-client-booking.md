@@ -54,16 +54,20 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/order
   "agent": "string",          // Маркер точки запроса (например: "ServiceName")
   "phone": "string",          // Телефон пользователя
   "shops": [{
-        "id_shop":  "string", // Идентификатор торговой точки
-        "shipping": "string", // Способ доставки товара
+        "id_shop":       "string", // Идентификатор торговой точки
+        "ext_id_shop" :  "string", // Внешний идентификатор (идентификаторы)
+        "shipping":      "string", // Способ доставки товара (при доставке указывается поставщик)
+        "delivery_date": "string", // Дата доставки (заполняется при доставке)
+        "delivery_time": "string", // Время доставки (заполняется при доставке)
     "data": [{
-        "id": "string",       // Идентификатор товара
-        "quant": 0.0,         // Количество
-        "price": 0.0          // Цена
+        "id":     "string",    // Идентификатор товара
+        "quant": 0.0,          // Количество
+        "price": 0.0           // Цена
     }]
   }]
 }
 ```
+**Для заказов с доставкой из Оптимы, в поле "ext_id_shop" также добавляется внешний идентификатор Оптимы по формату "123|456", где 123 - внешний идентификатор аптеки, | - разделитель, 456 - внешний идентификатор Оптимы.**
 
 Пример первого сообщения:
 ```
@@ -72,7 +76,10 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/order
   "phone": "380632670315",
   "shops": [{
         "id_shop":  "700555",
-        "shipping": "pickup",
+        "ext_id_shop" :  "652255|300800", 
+        "shipping":      "optima", 
+        "delivery_date": "2021-08-18",
+        "delivery_time": "09:00", 
     "data": [{
         "id": "45600",
         "quant": 5.0,
@@ -101,10 +108,13 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/order
   "id_order": "string",        // Идентификатор заказа
   "gl_state": "string",        // Статус обработки всего заказа
   "shops": [{
-        "id_shop":  "string",  // Идентификатор торговой точки
-        "shipping": "string",  // Способ доставки товара
-        "state":    "string",  // Статус обработки заказа
-        "order_exp": 0,        // Срок истечения заказа в аптеке, в формате Unixtime (в случае успешного бронирования в Online точке)       
+        "id_shop":       "string", // Идентификатор торговой точки
+        "ext_id_shop" :  "string", // Внешний идентификатор (при доставке)
+        "state":         "string", // Статус обработки заказа
+        "shipping":      "string", // Способ доставки товара (при доставке указывается поставщик)
+        "delivery_date": "string", // Дата доставки (заполняется при доставке)
+        "delivery_time": "string", // Время доставки (заполняется при доставке)        
+        "order_exp": 0,            // Срок истечения заказа в аптеке, в формате Unixtime (в случае успешного бронирования в Online точке)       
     "data": [{
         "id": "string",        // Идентификатор товара
         "quant": 0.0,          // Количество
@@ -122,9 +132,12 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/order
   "id_order": "884654",
   "gl_state": "Accepted", 
   "shops": [{
-        "id_shop":  "800600",
-        "shipping": "pickup",
-        "state":    "Accepted", 
+        "id_shop":       "800600",
+        "ext_id_shop" :  "652255|300800", 
+        "state":         "Accepted",
+        "shipping":      "optima", 
+        "delivery_date": "2021-08-18",
+        "delivery_time": "09:00",         
     "data": [{
         "id": "45600",
         "quant": 5.0,
@@ -148,8 +161,8 @@ curl -X POST -T "order.json" -u login:password http://{addr}/cli/order
 ```
 
 Где поле `"shipping"` описывает способ доставки заказа:
-* `pickup`  - заказ клиент заберет самостоятельно.
-* `deliver` - заказ необходимо доставить клиенту.
+* `pickup` - заказ клиент заберет самостоятельно.
+* `optima` - заказ необходимо доставить клиенту.
 
 Поле `gl_state` описывает текущее состояние всего заказа из корзины:
 * `Accepted` - заказ принят, и поступил на обработку.
@@ -207,22 +220,25 @@ curl -X POST -T "order.json" -u user:password http://{addr}/test-order
 Формат тела тестового запроса:
 ```
 {
-  "agent": "string",      // Маркер точки запроса, например "CorpName"
-  "phone": "string",      // Телефон пользователя 
+  "agent": "string",          // Маркер точки запроса (например: "ServiceName")
+  "phone": "string",          // Телефон пользователя
   "shops": [{
-    "id_shop":  "string", // Идентификатор торговой точки
-    "shipping": "string", // Способ доставки товара
+        "id_shop":       "string", // Идентификатор торговой точки
+        "ext_id_shop" :  "string", // Внешний идентификатор (идентификаторы)
+        "shipping":      "string", // Способ доставки товара (при доставке указывается поставщик)
+        "delivery_date": "string", // Дата доставки (заполняется при доставке)
+        "delivery_time": "string", // Время доставки (заполняется при доставке)
     "data": [{
-      "id": "string",     // Идентификатор товара
-      "quant": 0.0,       // Количество
-      "price": 0.0        // Цена
+        "id":     "string",    // Идентификатор товара
+        "quant": 0.0,          // Количество
+        "price": 0.0           // Цена
     }]
   }]
 }
 ```
 Где поле `"shipping"` описывает способ доставки заказа:
-* `pickup`  - заказ клиент заберет самостоятельно.
-* `deliver` - заказ необходимо доставить клиенту.
+* `pickup` - заказ клиент заберет самостоятельно.
+* `optima` - заказ необходимо доставить клиенту.
 
 Обрабатываются тестовые заказы, теми же методами, что и реальные, отличаются от реальных наличием поля `"test": true` в теле запроса.
 
@@ -233,7 +249,10 @@ curl -X POST -T "order.json" -u user:password http://{addr}/test-order
   "phone": "380632670315",
   "shops": [{
         "id_shop":  "700555",
-        "shipping": "pickup",
+        "ext_id_shop" :  "652255|300800", 
+        "shipping":      "optima", 
+        "delivery_date": "2021-08-18",
+        "delivery_time": "09:00", 
     "data": [{
         "id": "45600",
         "quant": 5.0,
